@@ -1,0 +1,200 @@
+{% extends "home/base.html" %}
+{% block content %}
+<style>
+    .red{
+        text-decoration: line-through;
+    }
+</style>
+    <ul>
+        <li> My Item</li>
+        <li> Another Item</li>
+        <li> Wow Cool</li>
+        <li> New Color</li>
+    </ul>
+    <input type='text' name = "newItem">
+
+    <script>
+
+    var inputSelect = document.querySelector('input[name = "newItem"]');
+    inputSelect.addEventListener('keypress', function(event){
+        if(event.keyCode === 13){
+            console.log(event.keyCode);
+            makeNew();
+        }
+    });
+
+    var mainList = document.querySelector('ul');
+    var clicker = document.getElementById('clicker')
+    var alllistitems = document.querySelectorAll('li')
+    for(var x=0; x <alllistitems.length; x++){
+        alllistitems[x].addEventListener('click', myList);
+    }
+    function myList(){
+        var temp = this.classList.toggle('red');
+        if(temp){
+            var span = document.createElement('span');
+            span.textContent = ' x'
+            span.addEventListener('click', function(){
+                this.parentElement.remove();
+            })
+            this.appendChild(span);
+        }else{
+            this.getElementsByTagName('span')[0].remove();
+        }
+    }
+
+
+    function makeNew(){
+        var li = document.createElement('li');
+        li.addEventListener('click', myList)
+        var textValue = inputSelect.value;
+        inputSelect.value = '';
+        var tempNode = document.createTextNode(textValue);
+        li.appendChild(tempNode);
+        mainList.appendChild(li);
+    }
+    // console.dir(document);
+    // console.log(document.URL)
+    // var eleList = document.querySelectorAll('li');
+    // for(var x=0; x < eleList.length; x++){
+    //     eleList[x].addEventListener('mouseover',function(){
+    //         this.classList.add('red');
+    //     });
+    //     eleList[x].addEventListener('mouseout', function(){
+    //         this.classList.remove('red')
+    //     })
+    // }
+    // have an item change from typing enter
+    // var ele = document.querySelector('input[name = "newItem"]');
+    // ele.addEventListener('keypress', addItem);
+    // var eleUL = document.querySelector('ul');
+
+    // function addItem(event){
+    //     console.log(event);
+    //     if(event.keyCode === 13 && ele.value.length > 5){
+    //         console.log('you pressed enter');
+    //         eleUL.style.backgroundColor = "yellow";
+    //     }}
+
+    // highlight elements when clicked on
+    // var eleList = document.querySelectorAll('li');
+    // for(var x=0; x< eleList.length; x++){
+    //     eleList[x].addEventListener('click',function(){
+    //     var temp = this.classList.toggle('red');
+    //     console.log(temp)
+    //     })}
+    // var ele1 = document.querySelector('ul');
+    // ele1.addEventListener('click', function(){
+    //     console.log('click');
+    //     ele1.style.backgroundColor = "yellow";
+    //     ele1.style.color = "blue"
+    // })
+
+
+
+    </script>
+{% endblock content %}
+
+<!-- document.querySelector('h1').innerHTML = output;
+console.log(a); -->
+
+<!-- var  var1, var2, var3;
+var1 = var2 = var3 = 0;
+
+function message1(){
+    var1++;
+    messages(); 
+}
+function message2(){
+    var2++
+    messages(); 
+}
+function message3(){
+    var3++;
+    messages(); 
+}
+function messages(){
+document.querySelector('h1').innerHTML = var1 + '' + var2 + '' + var3;
+} -->
+
+
+<!-- <input type= "text" id='myInput' value = 'text'> -->
+<!-- <button type= 'button' id="testButton"> Click </button> -->
+<!-- <button type= 'button' onclick="message2('hello world')">Click 2</button> -->
+<!-- <button type= 'button' onclick="message2('hello world')">New Car</button> -->
+
+<!-- var car = {
+    color: 'red',
+    year: '2010',
+    make: 'Nissan',
+    brand: 'Altima',
+    price: 5000,
+};
+
+var oldcar = {
+    color: 'black',
+    year: '2009',
+    make: 'Honda',
+    brand: 'Accord',
+    price: 4000,
+};
+
+function message2(){
+    var newcar = car.color +  ' ' +  car.make + ' '  + car.price;
+    document.querySelector('h1').innerHTML = newcar;
+}
+
+function message1(){
+    var oldercar = oldcar.color + ' ' + oldcar.make + ' ' + oldcar.price;
+    document.querySelector('h1').innerHTML= oldercar; -->
+<!-- } -->
+
+<!-- Buttons Click Using functions and Eventlisteners -->
+<!-- const myBtn = document.getElementById('testButton');
+const myEle = document.querySelector('h1');
+
+myBtn.addEventListener('click', message);
+
+function message(){
+    let temp = document.getElementById('myInput');
+    output(temp.value);
+}
+
+function output(mess){
+    myEle.innerHTML = mess; -->
+<!-- } -->
+
+<!-- Change css using javascript -->
+<!-- var el1 = document.querySelector('.highlight')
+console.dir(el1.innerHTML);
+el1.innerHTML = "Hello World";
+el1.style.color = 'red';
+var el2 = document.getElementById('one');
+el2.style.background = "yellow";
+var el3 = document.getElementsByClassName('doit');
+var tempEle = el3[0];
+tempEle.style.background = "Green";
+tempEle.style.color = "white";
+tempEle.style.border = "5px dotted purple";
+tempEle.style.fontSize = "32px";
+tempEle.style.display = "none";
+tempEle.style.display = "block"; -->
+
+<!-- Playing with Image Source -->
+<!-- <a href="https://placeholder.com">
+    <img src="https://via.placeholder.com/250/00fffff/000000" ></a>
+    <br>
+    <img src= "https://via.placeholder.com/350x150/00ff00/ffffff" >
+    <script>
+    // console.dir(document);
+    // console.log(document.URL)
+    var el1 = document.getElementsByTagName('a');
+    console.log(el1[0]);
+    var el2 = document.getElementsByTagName('img')
+    console.log(el2[1]);
+    var temp = el1[0].getAttribute('href');
+    el1[0].setAttribute('href', 'http://www.google.com')
+    var tempimg = el2[0].getAttribute('src');
+    var tempimg2 = el2[1].getAttribute('src');
+    el2[0].setAttribute('src', tempimg2)
+    el2[1].setAttribute('src', tempimg) -->

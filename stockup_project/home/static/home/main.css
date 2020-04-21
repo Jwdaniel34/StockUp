@@ -1,0 +1,372 @@
+body {
+  position: absolute;
+	width: 1920px;
+	height: 3553px;
+  background-color: rgba(0,167,158,1);
+  max-width: 100%;
+  overflow-x: hidden;
+  /* background: #00A79E;
+  color: #333333;
+  margin-top: 5rem; */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  .bg-steel {
+    background-color: #00A79E;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .nav-item {
+    display: block;
+    width: auto;
+    padding: 1em;
+    margin: 0;
+    text-decoration: none;
+    color: #FFFFFF;;
+  }
+
+  .nav-item:hover {
+    color: #AC51A4;
+    text-decoration: none;
+  }
+
+  .nav-item.active {
+    font-weight: 500;
+  }
+
+  #safe-space{
+    position: absolute;
+    right: 245px;
+    top: 381px;
+    overflow: visible;
+    width: 492px;
+    height: 166px;
+    text-align: left;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 50px;
+    color: rgba(255,255,255,1);
+  }
+
+  #adulting-money-save-invest {
+    position: absolute;
+    right: 290px;
+    top: 547px;
+    overflow: visible;
+    width: 444px;
+    height: 70px;
+    text-align: left;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    color: rgba(255,255,255,1);
+  }
+  
+  #cubes {
+    position: absolute;
+    width: 1199px;
+    height: 899px;
+    left: 283px;
+    top: 126px;
+    z-index: 1;
+    overflow: visible;
+  }
+
+  #Group_7 {
+    position: absolute;
+    width: 222px;
+    height: 72px;
+    left: 849px;
+    top: 3199px;
+    overflow: visible;
+    --web-animation: fadein 0.3s ease-out;
+    --web-action-type: page;
+    --web-action-target: Login_Page___05.html;
+    cursor: pointer;
+  }
+
+  .button1 {
+    background-color: #46216D; /* Purple */
+    border: none;
+    color: white;
+    padding: 20px 75px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 36px;
+  }
+
+  .button1:hover {
+    background-color: rgb(221, 137, 214);
+    text-decoration: none;
+  }
+
+  #Get_Started_btn {
+    position: absolute;
+    right: 870px;
+    bottom: 2536px;
+    overflow: visible;
+    width: 91px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+  }
+
+  #Group_24 {
+    position: absolute;
+    width: 1920px;
+    height: 924px;
+    left: -215px;
+    top: 966px;
+    overflow: visible;
+  }
+
+  #Rectangle_7 {
+    position: absolute;
+    overflow: visible;
+    width: 1958px;
+    height: 824px;
+    left: 0px;
+    top: 0px;
+  }
+
+  .Rectangle_7 {
+    position: absolute;
+    overflow: visible;
+    width: 1858px;
+    height: 923px;
+    left: 0px;
+    bottom: 30px;
+  }
+
+  #Mask_Group_1 {
+    position: absolute;
+    width: 1498px;
+    height: 830px;
+    left: 160px;
+    bottom: 125px;
+    overflow: visible;
+  }
+
+  #Lorem_ipsum_dolor_sit_amet__co {
+    position: absolute;
+    right: 415px;
+    top: 1437px;
+    overflow: visible;
+    width: 390px;
+    height: 345px;
+    line-height: 30px;
+    margin-top: -6.5px;
+    text-align: left;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    color: rgba(47,7,7,1);
+  }
+
+  #Connect_with_people_that_will_ {
+    position: absolute;
+    right: 275px;
+    top: 1217px;
+    overflow: visible;
+    width: 576px;
+    height: 220px;
+    text-align: left;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    color: rgba(3,144,136,1);
+  }
+
+  #Group_49 {
+    position: absolute;
+    width: 510px;
+    height: 110px;
+    left: 657px;
+    top: 1137px;
+    overflow: visible;
+  }
+  #Group_2 {
+    position: absolute;
+    width: 610px;
+    height: 110px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+  }
+  .Rectangle_9_ct {
+    filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.443));
+    position: absolute;
+    overflow: visible;
+    width: 640px;
+    height: 140px;
+    left: 0px;
+    top: 0px;
+  }
+  .Ellipse_3_cu {
+    position: absolute;
+    overflow: visible;
+    width: 70px;
+    height: 70px;
+    left: 20px;
+    top: 20px;
+  }
+  #Samuel_G__commented__I_deposit {
+    opacity: 0.997;
+    position: absolute;
+    left: 122.5px;
+    top: 46px;
+    overflow: visible;
+    width: 407px;
+    white-space: nowrap;
+    line-height: 30px;
+    margin-top: -6.5px;
+    text-align: center;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(33,3,3,1);
+    border: 1px solid none;
+    background-color: white;
+    padding: 15px 45px;
+    border-radius: 24px;
+  }
+  #Group_39 {
+    opacity: 0.24;
+    transform: translate(-1100px, -1137px) matrix(1,0,0,1,1649.1697,1176.4786) rotate(268deg);
+    transform-origin: center;
+    position: absolute;
+    width: 26.801px;
+    height: 30.406px;
+    left: 0px;
+    top: 0px;
+    overflow: visible;
+  }
+  .Polygon_1 {
+    overflow: hidden;
+    position: absolute;
+    width: 31.323px;
+    height: 27.846px;
+    right: 7.5px;
+    bottom: 80px;
+    transform: matrix(1,0,0,1,0,0);
+  }
+  .Polygon_2 {
+    overflow: hidden;
+    position: absolute;
+    width: 28.299px;
+    height: 8.856px;
+    left: 2.693px;
+    top: 9.453px;
+    transform: matrix(1,0,0,1,0,0);
+  }
+
+  .content-section {
+    background: #ffffff;
+    padding: 10px 20px;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  
+  .article-title {
+    color: #444444;
+  }
+  
+  a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+  .article-content {
+    white-space: pre-line;
+  }
+  
+  .article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+  .article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+
+ table,
+ td {
+    border: 1px solid #333;
+   }
+
+ thead,
+ tfoot {
+    background-color: #222222;
+    color: #fff;
+ }
+
+.blue{
+    color:blue;
+    font-size: 12px;
+ }
+
+.red{
+    color:red;
+    font-size: 12px;
+}
+
+span.practice{
+  background: yellow;
+  color: red;
+  font-size: 2em;
+
+}
+
+.container2{
+  padding: 5px;
+  border: 5px solid black;
+  border-bottom: 15px solid red;
+  margin: 10px;
+  clear: both;
+}
+
+section{
+  min-height: 300px;
+  padding: 10px;
+  background-color: lightblue;
+  margin: 5px 0;
+  border: 3px dotted black;
+}
+
+footer{
+  display: block;
+  background-color: darkgrey;
+  color: white;
+  text-align: center;
+  padding: 50px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
