@@ -5,7 +5,7 @@
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no user-scalable=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -34,7 +34,7 @@
               </div>
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
-                <a class="nav-item nav-features" href="{% url 'home' %}">Home</a>
+                <a class="nav-item nav-home" href="{% url 'home' %}">Home</a>
                 <a class="nav-item nav-features" href="{% url 'feature' %}">Features</a>
                 <a class="nav-item nav-about" href="{% url 'about' %}">About</a>
                 <a class="nav-item nav-contact" href="{% url 'contact' %}">Contact Us</a>
@@ -45,15 +45,14 @@
           </div>
         </nav>
       </header>
-    <div class= "container">
         <main role="main" class="container">
-              <div class="col-md-8">
+              <div  >
                 {% block content %}{% endblock %}
+                  <footer class= "footer"> Copyright my website </footer>
               </div>
           </main>
-    </div>
 
-    <footer id= "footer"> Copyright my website </footer>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

@@ -1,50 +1,132 @@
 {% extends "home/base.html" %}
 {% block content %}
-<h1> About Page </h1>
-    <section>
-        <ul>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-        </ul>
-        <ol>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-        </ol>
-        <ol type="I", start=5>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-            <li>List item</li>
-        </ol>
-        <dl>
-            <dt> One </dt>
-            <dd> Whatever description</dd>
-            <dt> Two </dt>
-            <dd> Next Description</dd>
-        </dl>
-        <div>
-        <h3>Poterat autem inpune</h3>
-            <p class= "blue">Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                <i>Bonum patria: miserum exilium.</i> Erat enim Polemonis. 
-                Duo Reges: constructio interrete. Disserendi artem nullam habuit. </p>
-            
-            <p>Quid, quod res alia tota est? Animum autem reliquis rebus ita perfecit, 
-                ut corpus; Quae cum dixisset, finem ille. Sed tamen intellego quid velit. 
-                Nunc omni virtuti vitium contrario nomine opponitur. Honesta oratio, Socratica, 
-                Platonis etiam. Negat enim summo bono afferre incrementum diem. </p>
-            </div>
-        </section>
+<style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+    }
+    
+    /* html {
+      box-sizing: border-box;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    } */
+    
+    .column {
+      float: left;
+      width: 33.3%;
+      margin-bottom: 16px;
+      padding: 0 8px;
+    }
+    
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      margin: 8px;
+    }
+    
+    .about-section {
+    padding: 20px;
+    text-align: center;
+    background-color: #21b1a8;
+    color: white;
+    margin-top: 134px;
+    }
+    
+    .container {
+      padding: 0 16px;
+    }
+    
+    .container::after, .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    
+    .title {
+      color: grey;
+    }
 
-        <section>
-        <h3>Ille vero, si insipiens-quo certe, quoniam tyrannus -, numquam beatus;</h3>
-        
-        <p class= "red">Ut in geometria, prima si dederis, danda sunt omnia.
-             Bestiarum vero nullum iudicium puto. An nisi populari fama? </p>
-        </section>
+    .bg-title {
+        margin: 0 -601.5rem;
+        padding: 0.25rem 1.5rem;
+        border-left: 600rem solid white;
+        border-right: 600rem solid white;
+        background-color: white;
+    }
+    
+    .button {
+      border: none;
+      outline: 0;
+      display: inline-block;
+      padding: 8px;
+      color: white;
+      background-color: #000;
+      text-align: center;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    .button:hover {
+      background-color: #555;
+    }
+    
+    @media screen and (max-width: 650px) {
+      .column {
+        width: 100%;
+        display: block;
+      }
+    }
+    </style>
+
+    <div class="about-section">
+      <h1>About Us Page</h1>
+      <p>Some text about who we are and what we do.</p>
+      <p>Resize the browser window to see that this page is responsive by the way.</p>
+    </div>
+    
+    <h2 style="text-align:center" class='bg-title'>Our Team</h2>
+    <div class="row">
+      <div class="column">
+        <div class="card">
+          <!-- <img src="/w3images/team1.jpg" alt="Jane" style="width:100%"> -->
+          <div class="container">
+            <h2>John Daniel</h2>
+            <p class="title">CEO & Founder</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>john@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+    
+      <div class="column">
+        <div class="card">
+          <!-- <img src="/w3images/team2.jpg" alt="Mike" style="width:100%"> -->
+          <div class="container">
+            <h2>No one</h2>
+            <p class="title">Art Director</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>mike@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="column">
+        <div class="card">
+          <!-- <img src="/w3images/team3.jpg" alt="John" style="width:100%"> -->
+          <div class="container">
+            <h2>No one</h2>
+            <p class="title">Designer</p>
+            <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+            <p>john@example.com</p>
+            <p><button class="button">Contact</button></p>
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock content %}
 

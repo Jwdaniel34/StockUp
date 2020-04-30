@@ -1,15 +1,9 @@
 body {
-  position: absolute;
-	width: 1920px;
-	height: 3553px;
   background-color: rgba(0,167,158,1);
-  max-width: 100%;
+  width: 100%;
   overflow-x: hidden;
-  /* background: #00A79E;
-  color: #333333;
-  margin-top: 5rem; */
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
@@ -18,6 +12,7 @@ body {
     margin: 0;
   }
   
+
   .bg-steel {
     background-color: #00A79E;
   }
@@ -44,68 +39,63 @@ body {
     font-weight: 500;
   }
 
+  .top_container_header{
+    /* background-color: #15a79e; */
+    height: 780px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .middle_container_connect {
+      height: 912px;
+      margin-bottom: -119px; 
+  }
+
+
+
   #safe-space{
-    position: absolute;
-    right: 245px;
-    top: 381px;
     overflow: visible;
-    width: 492px;
-    height: 166px;
     text-align: left;
     font-family: Avenir;
     font-style: normal;
     font-weight: bold;
-    font-size: 50px;
+    font-size: 2.5rem;
     color: rgba(255,255,255,1);
+    margin: -82px 10px 40px 30px;
   }
 
   #adulting-money-save-invest {
-    position: absolute;
-    right: 290px;
-    top: 547px;
     overflow: visible;
-    width: 444px;
-    height: 70px;
     text-align: left;
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 1.063rem;
     color: rgba(255,255,255,1);
+    margin: 40px 21px 37px 30px;
   }
   
   #cubes {
-    position: absolute;
-    width: 1199px;
-    height: 899px;
-    left: 283px;
-    top: 126px;
+    width: 1099px;
+    height: 799px;
     z-index: 1;
     overflow: visible;
-  }
-
-  #Group_7 {
     position: absolute;
-    width: 222px;
-    height: 72px;
-    left: 849px;
-    top: 3199px;
-    overflow: visible;
-    --web-animation: fadein 0.3s ease-out;
-    --web-action-type: page;
-    --web-action-target: Login_Page___05.html;
-    cursor: pointer;
+    top: 100px;
+    left: 500px;
   }
 
   .button1 {
     background-color: #46216D; /* Purple */
     border: none;
     color: white;
-    padding: 20px 75px;
+    padding: 20px 55px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 1rem;
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 36px;
@@ -116,10 +106,7 @@ body {
     text-decoration: none;
   }
 
-  #Get_Started_btn {
-    position: absolute;
-    right: 870px;
-    bottom: 2536px;
+  .Get_Started_btn {
     overflow: visible;
     width: 91px;
     white-space: nowrap;
@@ -127,93 +114,59 @@ body {
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
-    font-size: 17px;
-  }
-
-  #Group_24 {
-    position: absolute;
-    width: 1920px;
-    height: 924px;
-    left: -215px;
-    top: 966px;
-    overflow: visible;
-  }
-
-  #Rectangle_7 {
-    position: absolute;
-    overflow: visible;
-    width: 1958px;
-    height: 824px;
-    left: 0px;
-    top: 0px;
+    font-size: 1rem;
+    --web-animation: fadein 0.3s ease-out;
+    --web-action-type: page;
+    --web-action-target: Login_Page___05.html;
+    cursor: pointer;
+    /* margin: 38px 0px 38px 104px; */
+    margin: 38px 0px 38px 63px;
   }
 
   .Rectangle_7 {
-    position: absolute;
+    position: relative;
     overflow: visible;
-    width: 1858px;
-    height: 923px;
-    left: 0px;
-    bottom: 30px;
+    /* width: 100%; */
+    height: 90%;
+    /* left: 0px; */
+    /* bottom: 30px; */
+    background-color: white;
+    margin: 0 -601.5rem;
+    /* add back section padding (1.5rem) */
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid white;
+    border-right: 600rem solid white;
   }
 
   #Mask_Group_1 {
-    position: absolute;
-    width: 1498px;
-    height: 830px;
-    left: 160px;
-    bottom: 125px;
+    height: 801px;
     overflow: visible;
+    margin: -7px 0px 0px 319px
   }
 
-  #Lorem_ipsum_dolor_sit_amet__co {
-    position: absolute;
-    right: 415px;
-    top: 1437px;
+  #connect-content {
     overflow: visible;
-    width: 390px;
-    height: 345px;
+    width: 332px;
     line-height: 30px;
-    margin-top: -6.5px;
-    text-align: left;
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 15px;
     color: rgba(47,7,7,1);
+    margin: 13px 0px 0px 17px;
   }
 
-  #Connect_with_people_that_will_ {
-    position: absolute;
-    right: 275px;
-    top: 1217px;
+  #connect-title-content {
     overflow: visible;
-    width: 576px;
-    height: 220px;
     text-align: left;
     font-family: Avenir;
-    font-style: normal;
+    font-style: bold;
     font-weight: normal;
-    font-size: 50px;
+    font-size: 2.813rem;
     color: rgba(3,144,136,1);
+    margin: -636px 0px 0px 17px;
   }
 
-  #Group_49 {
-    position: absolute;
-    width: 510px;
-    height: 110px;
-    left: 657px;
-    top: 1137px;
-    overflow: visible;
-  }
-  #Group_2 {
-    position: absolute;
-    width: 610px;
-    height: 110px;
-    left: 0px;
-    top: 0px;
-    overflow: visible;
-  }
   .Rectangle_9_ct {
     filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.443));
     position: absolute;
@@ -223,6 +176,7 @@ body {
     left: 0px;
     top: 0px;
   }
+
   .Ellipse_3_cu {
     position: absolute;
     overflow: visible;
@@ -231,58 +185,273 @@ body {
     left: 20px;
     top: 20px;
   }
-  #Samuel_G__commented__I_deposit {
+
+  .client-sam {
     opacity: 0.997;
-    position: absolute;
-    left: 122.5px;
-    top: 46px;
+    right: 200.5px;
+    top: 5px;
     overflow: visible;
-    width: 407px;
-    white-space: nowrap;
     line-height: 30px;
     margin-top: -6.5px;
-    text-align: center;
     font-family: Arial;
     font-style: normal;
     font-weight: bold;
     font-size: 10px;
     color: rgba(33,3,3,1);
-    border: 1px solid none;
-    background-color: white;
-    padding: 15px 45px;
-    border-radius: 24px;
-  }
-  #Group_39 {
-    opacity: 0.24;
-    transform: translate(-1100px, -1137px) matrix(1,0,0,1,1649.1697,1176.4786) rotate(268deg);
-    transform-origin: center;
-    position: absolute;
-    width: 26.801px;
-    height: 30.406px;
-    left: 0px;
-    top: 0px;
-    overflow: visible;
-  }
-  .Polygon_1 {
-    overflow: hidden;
-    position: absolute;
-    width: 31.323px;
-    height: 27.846px;
-    right: 7.5px;
-    bottom: 80px;
-    transform: matrix(1,0,0,1,0,0);
-  }
-  .Polygon_2 {
-    overflow: hidden;
-    position: absolute;
-    width: 28.299px;
-    height: 8.856px;
-    left: 2.693px;
-    top: 9.453px;
-    transform: matrix(1,0,0,1,0,0);
+    margin: 0px 0px  0px -65px ;
   }
 
-  .content-section {
+  .client-adam {
+    opacity: 0.997;
+    right: 200.5px;
+    top: 5px;
+    overflow: visible;
+    line-height: 30px;
+    margin-top: -6.5px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(33,3,3,1);
+    margin: 0px 0px  0px -95px ;
+  }
+
+  .client-jo {
+    opacity: 0.997;
+    right: 200.5px;
+    top: 5px;
+    overflow: visible;
+    line-height: 30px;
+    margin-top: -6.5px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(33,3,3,1);
+    margin: 0px 0px  0px -25px ;
+  }
+
+  .client-ray {
+    opacity: 0.997;
+    right: 200.5px;
+    top: 5px;
+    overflow: visible;
+    line-height: 30px;
+    margin-top: -6.5px;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    color: rgba(33,3,3,1);
+    margin: 0px 0px  0px -35px ;
+  }
+
+  .client-box {
+    white-space: nowrap;
+    border: 1px solid none;
+    background-color: white;
+    width: 457px;
+    height: 50%;
+    padding: 15px 45px;
+    border-radius: 24px;
+    box-shadow: 5px 5px 5px rgb(73, 73, 73);
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  .client-box:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
+    }
+
+
+  #sam {
+      position: relative;
+      width: 610px;
+      height: 110px;
+      overflow: visible;
+      margin: -562px 0px 544px 730px;
+  }
+
+
+  #josephine {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  #adam {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  #ray {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  .dot {
+    height: 46px;
+    width: 46px;
+    background-color: black;
+    border-radius: 100%;
+    margin-left: -35px;
+  }
+
+  #sent_message {
+    height: 25px;
+    width: 25px;
+    opacity: 0.5;
+    margin: 0px -15px  0px 0px;
+  }
+
+  #homepagebubbles_1 {
+    width: 446px;
+    height: 310px;
+    overflow: visible;
+    margin: -1225px 0px 0px -214px;
+  }
+
+  #homepagebubbles_2 {
+    width: 190px;
+    height: 190px;
+    overflow: visible;
+    margin: -279px 0px 0px 59px;
+  }
+  
+.mid-last-container {
+    height: 1800px;
+    background-color: #F1F8F8;
+    padding-top: 210px;
+    display: flex;
+    flex-direction: column;
+    margin: 1.562rem -605.5rem;
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid #F1F8F8;
+    border-right: 600rem solid #F1F8F8;
+}
+
+  .Group_10 {
+  padding: 10px;
+  height: 643px;
+  background-color: #9fcdf1;
+  text-align: center;
+  border: 1px solid #ffffff;
+  margin: -13px 0px -4px 0px;
+}
+  
+ /* Clear floats after the columns  */
+  .mid-last-container:after {
+    content: "";
+    clear: both;;
+  }
+
+.Features {
+    /* font-size: 2.625rem; */
+    /* font-style: normal; */
+    margin: 0px 0px 0px -14px;
+    background-color: white;
+    padding: 0.25rem 1.5rem;
+    border-left: 0rem solid white;
+    border-right: 23rem solid white;
+}
+  
+  .cards {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    margin: 25px 56px 20px;
+    border: 19px solid white;
+    border-radius: 100%;
+    text-align: center;
+  }
+
+
+  .card-title {
+    overflow: visible;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 42px;
+    color: rgba(47,7,7,1);
+  }
+
+  /* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+
+  /* Float four columns side by side */
+.column {
+  float: left;
+  width: 100%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  /* margin: 0 -5px; */
+    /* margin: 0px -600.5rem; */
+    /* padding: 0.25rem 1.5rem; */
+    /* border-left: 600rem solid white; */
+    /* border-right: 600rem solid white; */
+    background-color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+  .Lastcontainer {
+    height: 379px;
+    background-color: white;
+    margin-bottom: 0rem;
+    padding-top: 94px;
+    text-align: center;
+    margin: -1.438rem -605.5rem;
+    /* padding: 0.25rem 19.5rem; */
+    border-left: 600rem solid white;
+    border-right: 600rem solid white
+  }
+
+  #start-today {
+    overflow: visible;
+    /* height: 83px; */
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+  }
+
+  #adulting-money-save-invest-2 {
+    overflow: visible;
+    margin-bottom: 40px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    color: black;
+  }
+
+  /* .content-section {
     background: #ffffff;
     padding: 10px 20px;
     border: 1px solid #dddddd;
@@ -357,16 +526,469 @@ section{
   background-color: lightblue;
   margin: 5px 0;
   border: 3px dotted black;
+} */
+
+footer {
+    background-color: #46216c;
+    color: #ffffff;
+    height: 211px;
+    margin: -0.438rem -601.5rem;
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid #46216c;
+    border-right: 600rem solid #46216c;
 }
 
-footer{
-  display: block;
-  background-color: darkgrey;
-  color: white;
-  text-align: center;
-  padding: 50px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
+
+@media (min-width: 387px) {
+
+  #connect-content {
+    overflow: visible;
+    width: 337px;
+    line-height: 30px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(47,7,7,1);
+    margin: 28px 0px 0px 11px;
+  }
+
+  #connect-title-content {
+    overflow: visible;
+    text-align: left;
+    font-family: Avenir;
+    font-style: bold;
+    font-weight: normal;
+    font-size: 2.813rem;
+    color: rgba(3,144,136,1);
+    margin: -637px 0px 0px 0px; }
+
+  .Get_Started_btn {
+    overflow: visible;
+    width: 91px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    --web-animation: fadein 0.3s ease-out;
+    --web-action-type: page;
+    --web-action-target: Login_Page___05.html;
+    cursor: pointer;
+    margin: 38px 0px 38px 104px; }
+
+    .Rectangle_7 {
+      position: relative;
+      overflow: visible;
+      /* width: 100%; */
+      height: 87%;
+      /* left: 0px; */
+      /* bottom: 30px; */
+      background-color: white;
+      margin: 0 -601.5rem;
+      padding: 0.25rem 1.5rem;
+      border-left: 600rem solid white;
+      border-right: 600rem solid white;
+    }
+
 }
+
+
+
+@media (min-width: 600px) {
+
+  #connect-content {
+    overflow: visible;
+    width: 337px;
+    line-height: 30px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(47,7,7,1);
+    margin: 28px 0px 0px 11px;
+  }
+
+  #connect-title-content {
+    overflow: visible;
+    text-align: left;
+    font-family: Avenir;
+    font-style: bold;
+    font-weight: normal;
+    font-size: 2.813rem;
+    color: rgba(3,144,136,1);
+    margin: -637px 0px 0px 0px; }
+
+    .Rectangle_7 {
+      position: relative;
+      overflow: visible;
+      height: 87%;
+      background-color: white;
+      margin: 0 -601.5rem;
+      padding: 0.25rem 1.5rem;
+      border-left: 600rem solid white;
+      border-right: 600rem solid white;
+    }
+
+    .row {
+      /* margin: 0 -5px; */
+      margin: 0px -600.5rem;
+      /* padding: 0.25rem 1.5rem; */
+      border-left: 600rem solid white;
+      border-right: 600rem solid white;
+      background-color: white;
+  }
+
+    .cards {
+      filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+      overflow: visible;
+      margin: 25px 123px 20px;
+      border: 19px solid white;
+      border-radius: 100%;
+      text-align: center;
+  }
+
+}
+
+@media (min-width: 668px) {
+  #cubes {
+    width: 1099px;
+    height: 799px;
+    z-index: 1;
+    overflow: visible;
+    position: absolute;
+    top: 100px;
+    left: 335px;
+  }
+}
+
+
+@media only screen and (min-width: 768px) {
+  #safe-space {
+    margin: -46px 19px 9px 21px;
+  }
+
+  #adulting-money-save-invest {
+    margin: 34px 19px 27px 21px;
+  }
+
+  .Get_Started_btn {
+    margin: 21px 7px 40px 95px;
+  }
+
+  #cubes {
+      width: 1099px;
+      height: 799px;
+      z-index: 1;
+      overflow: visible;
+      position: absolute;
+      top: 100px;
+      left: 301px;
+  }
+
+  .Rectangle_7 {
+    position: relative;
+    overflow: visible;
+    height: 87%;
+    background-color: white;
+    margin: 0 -601.5rem;
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid white;
+    border-right: 600rem solid white;
+  }
+
+  #sam {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    /* left: 660px; */
+    /* top: 1137px; */
+    overflow: visible;
+    margin: -454px  0px 544px 419px;}
+
+
+  #adam {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin:-587px  0px 544px 439px;
+  }
+
+  #josephine {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -587px  0px 544px 460px;
+  }
+
+
+  #ray {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -587px  0px 544px 481px;
+  }
+
+
+  .Features {
+    font-size: 2.625rem;
+    font-style: normal;
+    margin: 0px 0px 0px -39px;
+    border-left: 4rem solid white;
+    border-right: 46rem solid white;
+}
+
+  .row {
+    /* margin: 0 -5px; */
+    /* margin: 0px 0rem; */
+    padding: -0.75rem 1.5rem;
+    border-left: 4rem solid white;
+    border-right: 4rem solid white;
+    background-color: white;
+    margin-bottom: 3%;
+    margin-right: -42px;
+    margin-left: -41px;
+  }
+  
+  .column {
+    float: left;
+    width: 100%; 
+    /* padding: 0 10px; */
+    padding-top: 132px;
+}
+
+  .cards {
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  overflow: visible;
+  margin: 25px 171px 20px;
+  border: 19px solid white;
+  border-radius: 100%;
+  text-align: center;
+}
+
+}
+
+@media (min-width: 868px) {
+  #cubes {
+    width: 1099px;
+    height: 799px;
+    z-index: 1;
+    overflow: visible;
+    position: absolute;
+    top: 58px;
+    left: 474px;
+  }
+
+    #Mask_Group_1 {
+    height: 801px;
+    overflow: visible;
+    margin: -7px 0px 0px 189px;
+  }
+
+  .Rectangle_7 {
+    position: relative;
+    overflow: visible;
+    height: 87%;
+    background-color: white;
+    margin: 0 -601.5rem;
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid white;
+    border-right: 600rem solid white;
+  }
+
+  #sam {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -554px  0px 544px 730px;}
+
+
+  #josephine {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  #adam {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  #ray {
+    position: relative;
+    width: 610px;
+    height: 110px;
+    overflow: visible;
+    margin: -562px 0px 544px 639px;
+  }
+
+  .Features {
+    font-size: 2.625rem;
+    font-style: normal;
+    margin: 0px 0px 0px -45px;
+    background-color: white;
+    padding: 0.25rem 1.5rem;
+    /* border-left: 600rem solid #F1F8F8; */
+    border-right: 592rem solid #F1F8F8;
+  }
+
+  .Group_10 {
+    padding: 0.625rem;
+    height: 45.875rem;
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border: 2px solid #F1F8F8;
+    margin: 132px 0px 0px 0px;
+    position:relative
+  }
+
+  .mid-last-container {
+    height: 1000px;
+    background-color: #F1F8F8;
+    padding-top: 210px;
+    display: flex;
+    flex-direction: row;
+    margin: -7.438rem -601.5rem;
+    margin-bottom: 0rem;
+    padding: 0.25rem 1.5rem;
+    border-left: 600rem solid #F1F8F8;
+    border-right: 592rem solid #F1F8F8;
+    /* justify-content: center; */
+}
+
+.Lastcontainer {
+    height: 467px;
+    background-color: white;
+    margin-bottom: 0rem;
+    padding-top: 108px;
+    text-align: center;
+    margin: -0.438rem -605.5rem;
+    padding: -0.75rem 19.5rem;
+    border-left: 600rem solid white;
+    border-right: 600rem solid white;
+}
+
+#start-today {
+  overflow: visible;
+  /* height: 83px; */
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  color: black;
+}
+
+#adulting-money-save-invest-2 {
+  overflow: visible;
+  margin-bottom: 40px;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 17px;
+  color: black;
+}
+
+.row {
+  margin: 0 -5px;
+  margin: 0px -600.5rem;
+  padding: 0.25rem 1.5rem;
+  border-left: 600rem solid white;
+  border-right: 600rem solid white;
+  background-color: white;
+}
+
+/* .column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+  padding-top: 116px;
+} */
+
+.cards {
+  filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+  overflow: visible;
+  margin: 27px 192px 20px;
+  border: 19px solid white;
+  border-radius: 100%;
+  text-align: center;
+}
+
+
+  footer {
+    display: flex;
+    background-color: #46216c;
+    color: #ffffff;
+    height: 211px;
+    margin: -0.438rem -605.5rem;
+    padding: 0.25rem 19.5rem;
+    border-left: 600rem solid #46216c;
+    border-right: 600rem solid #46216c;
+}
+
+}
+ 
+@media (min-width: 988px) {
+
+  .cards {
+    margin: 27px 14px 20px;
+}
+
+
+.column {
+    float: left;
+    width: 33%;
+    padding: 0 10px;
+    padding-top: 116px;
+    display: block;
+}
+}
+
+@media (min-width: 1110px) {
+  .cards {
+      margin: 27px 14px 20px;
+  }
+}
+
+
+@media (min-width: 1120px) {
+  .cards {
+    margin: 27px 13px 20px;
+  }
+
+  .column {
+    float: left;
+    width: 33%;
+    padding: 0 10px;
+    padding-top: 116px;
+}
+  }
+
+@media (min-width: 1143px) {
+  .cards {
+      margin: 27px 13px 20px;
+  }
+
+  .column {
+    float: left;
+    width: 33%;
+    padding: 0 10px;
+    padding-top: 116px;
+}
+  }
+
+
+  @media (min-width: 1200px) {
+  .cards {
+      margin: 27px 37px 20px;
+  }
+  }
