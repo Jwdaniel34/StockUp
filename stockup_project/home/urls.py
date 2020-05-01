@@ -20,10 +20,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', views.home, name = 'home'),
+    path('feature/', views.feature, name = 'feature'),
     path('about/', views.about, name= 'about'),
     path('contact/', views.contact, name ='contact'),
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
     path('javascript/', views.javascript, name = 'javascript'),
-    path('feature/', views.feature, name = 'feature')
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()

@@ -7,6 +7,10 @@ body {
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
+
+ h2 {
+  font-size: 3rem;
+  }
   
   ul {
     margin: 0;
@@ -39,8 +43,7 @@ body {
     font-weight: 500;
   }
 
-  .top_container_header{
-    /* background-color: #15a79e; */
+  .top_container_header {
     height: 780px;
     justify-content: center;
     display: flex;
@@ -198,7 +201,9 @@ body {
     font-weight: bold;
     font-size: 10px;
     color: rgba(33,3,3,1);
-    margin: 0px 0px  0px -65px ;
+    /* margin: 0px 0px  0px -65px ; */
+    margin: 0px 114px  0px -65px ;
+    
   }
 
   .client-adam {
@@ -213,7 +218,8 @@ body {
     font-weight: bold;
     font-size: 10px;
     color: rgba(33,3,3,1);
-    margin: 0px 0px  0px -95px ;
+    /* margin: 0px 0px  0px -95px ; */
+    margin: 0px 153px  0px -95px ;
   }
 
   .client-jo {
@@ -228,7 +234,8 @@ body {
     font-weight: bold;
     font-size: 10px;
     color: rgba(33,3,3,1);
-    margin: 0px 0px  0px -25px ;
+    /* margin: 0px 0px  0px -25px ; */
+    margin: 0px 90px  0px -25px ;
   }
 
   .client-ray {
@@ -243,7 +250,8 @@ body {
     font-weight: bold;
     font-size: 10px;
     color: rgba(33,3,3,1);
-    margin: 0px 0px  0px -35px ;
+    /* margin: 0px 0px  0px -35px ; */
+    margin: 0px 98px  0px -35px ;
   }
 
   .client-box {
@@ -309,12 +317,13 @@ body {
     margin-left: -35px;
   }
 
-  #sent_message {
+  /* #sent_message {
     height: 25px;
     width: 25px;
     opacity: 0.5;
     margin: 0px -15px  0px 0px;
-  }
+    color:white;
+  } */
 
   #homepagebubbles_1 {
     width: 446px;
@@ -358,8 +367,6 @@ body {
   }
 
 .Features {
-    /* font-size: 2.625rem; */
-    /* font-style: normal; */
     margin: 0px 0px 0px -14px;
     background-color: white;
     padding: 0.25rem 1.5rem;
@@ -391,7 +398,7 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
   text-align: center;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
 }
 
   /* Float four columns side by side */
@@ -702,8 +709,6 @@ footer {
     position: relative;
     width: 610px;
     height: 110px;
-    /* left: 660px; */
-    /* top: 1137px; */
     overflow: visible;
     margin: -454px  0px 544px 419px;}
 
@@ -735,36 +740,31 @@ footer {
 
 
   .Features {
-    font-size: 2.625rem;
-    font-style: normal;
-    margin: 0px 0px 0px -39px;
-    border-left: 4rem solid white;
-    border-right: 46rem solid white;
+      margin: 0px 0px 0px -88px;
+      border-left: 4rem solid white;
+      border-right: 47rem solid white;
 }
 
   .row {
-    /* margin: 0 -5px; */
-    /* margin: 0px 0rem; */
-    padding: -0.75rem 1.5rem;
-    border-left: 4rem solid white;
-    border-right: 4rem solid white;
-    background-color: white;
-    margin-bottom: 3%;
-    margin-right: -42px;
-    margin-left: -41px;
+      padding: -0.75rem 1.5rem;
+      border-left: 4rem solid white;
+      border-right: 4rem solid white;
+      background-color: white;
+      margin-bottom: 3%;
+      margin-right: -88px;
+      margin-left: -86px;
   }
   
   .column {
     float: left;
     width: 100%; 
-    /* padding: 0 10px; */
-    padding-top: 132px;
+    padding-top: 51px;
 }
 
   .cards {
   filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
   overflow: visible;
-  margin: 25px 171px 20px;
+  margin: 25px 224px 20px;
   border: 19px solid white;
   border-radius: 100%;
   text-align: center;
@@ -835,11 +835,11 @@ footer {
   .Features {
     font-size: 2.625rem;
     font-style: normal;
-    margin: 0px 0px 0px -45px;
+    margin: 0px 0px 0px -170px;
     background-color: white;
     padding: 0.25rem 1.5rem;
     /* border-left: 600rem solid #F1F8F8; */
-    border-right: 592rem solid #F1F8F8;
+    border-right: 592rem solid white;
   }
 
   .Group_10 {
@@ -944,19 +944,27 @@ footer {
 }
 
 
-.column {
-    float: left;
-    width: 33%;
-    padding: 0 10px;
-    padding-top: 116px;
-    display: block;
+  .column {
+      float: left;
+      width: 33%;
+      padding: 0 10px;
+      padding-top: 51px;
+      display: block;
 }
+  .Features {
+      margin: 0px 0px 0px -106px;
+  }
+
 }
 
 @media (min-width: 1110px) {
   .cards {
       margin: 27px 14px 20px;
   }
+
+  .Features {
+    margin: 0px 0px 0px -161px;
+}
 }
 
 
@@ -969,7 +977,7 @@ footer {
     float: left;
     width: 33%;
     padding: 0 10px;
-    padding-top: 116px;
+    padding-top: 51px;
 }
   }
 
@@ -982,7 +990,7 @@ footer {
     float: left;
     width: 33%;
     padding: 0 10px;
-    padding-top: 116px;
+    padding-top: 51px;
 }
   }
 

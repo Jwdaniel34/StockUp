@@ -1,82 +1,47 @@
 {% extends "home/base.html" %}
 {% block content %}
-<div class= "container">
-    <main role="main" class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h3>Our Sidebar</h3>
-            <p class='text-muted'>You can put any information here you'd like.
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
-                <li class="list-group-item list-group-item-light">Announcements</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-            </ul>
-            </p>
-        </div>
-    </div>
-    </main>
-    </div>
+    <style>
+     .Features   {
+        padding-top: 135px;
+    }
 
-    {% for post in posts %} 
-    <article class="media content-section">
-        <div class="media-body">
-          <div class="article-metadata">
-            <a class="mr-2" href="#">{{ post.author }}</a>
-            <small class="text-muted">{{ post.date_posted }}</small>
-          </div>
-          <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-          <p class="article-content">{{ post.content }}</p>
+    .column {
+        margin-bottom: 11%;
+    }
+    </style>
+    <div class='Features'> 
+        <h2>Features</h2>
+    </div>
+    <div class= 'row'>
+    <div class="column">
+        <div class="card">
+            <img class="cards" src="../../../static/home/img/team-work.png"  width=221px
+            height=221px>
+            <span class="card-title">Team-Up</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
         </div>
-      </article>
-    {% endfor %}
-    <section class = "container2">
-        <a href="https://placeholder.com"><img src="https://via.placeholder.com/150" ></a>
-        <p> 
-            <strong>Lorem ipsum</strong> dolor sit, <span class= 'practice'> amet consectetur adipisicing</span> elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. <span class= "prep">Qui molestias </span>provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
-    <section> 
-        <p> 
-            <em>Lorem ipsum</em> dolor sit, amet consectetur adipisicing elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. Qui molestias provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
-    <section> 
-        <p> 
-            <strong>Lorem ipsum</strong> dolor sit, amet consectetur adipisicing elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. Qui molestias provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
-    <section> 
-        <p> 
-            <em>Lorem ipsum</em> dolor sit, amet consectetur adipisicing elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. Qui molestias provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
-    <section> 
-        <p> 
-            <strong>Lorem ipsum</strong> dolor sit, amet consectetur adipisicing elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. Qui molestias provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
-    <section> 
-        <p> 
-            <em>Lorem ipsum</em> dolor sit, amet consectetur adipisicing elit. 
-            Ipsa maxime recusandae magnam ratione reprehenderit ipsum repellat, 
-            reiciendis suscipit. Qui molestias provident magni necessitatibus. Maiores alias 
-            officia aliquam amet ea est.
-        </p>
-    </section>
+    </div>	   
+    <div class="column">
+        <div class="card">
+            <img class="cards" src="../../../static/home/img/savemoney.svg" width=221px
+            height=221px> 
+            <span class="card-title">Save</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
+            </div>
+            </div>
+    <div class="column">
+        <div class="card">
+            <img class="cards" src="../../../static/home/img/savingup.png" width=227px
+            height=227px>
+            <span class="card-title">Invest</span>
+            <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
+        </div>
+    </div>
+    </div> 
 {% endblock content %}
