@@ -1,0 +1,14 @@
+{% extends "home/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .profile-body {
+        margin-bottom: 100%;
+        margin-top: 13%;
+    }
+</style>
+
+    <div class='profile-body'>
+    <h1>{{ user.username }}</h1>
+    </div>
+{% endblock content %}
