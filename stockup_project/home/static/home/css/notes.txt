@@ -1,0 +1,59 @@
+	   <!-- <img id="cubes" src="../../../static/home/img/cubes.png">  rgba(3,144,136,1)-->
+
+	  <div class="row-connect">
+		<div class="title-content col-sm-4">
+			<span>Connect</span><span style="color:white;"> with people that will </span><span>support</span><span style="color:white;"></span> you.</span>
+			<div class="connect-content">
+				<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+			 </div>
+		</div>
+		<div class="col"><img  class="img-people" width= 100% height=100% src="../../../static/home/img/5234.png"></div>
+		<!-- <div><img  class="img-people col-md-9" width= 100% height=100% src="../../../static/home/img/5234.png"></div> -->
+		<!-- <a href="https://www.freepik.com/free-photos-vectors/people">People vector created by pch.vector - www.freepik.com</a 
+			<a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by pch.vector - www.freepik.com</a>
+		  <div class="Rectangle_7">
+		  		<image id="Mask_Group_1" x="0" y="0" width="100%" height="100%" src="../../../static/home/img/Mask_Group_1_cz_pattern.png"></image>
+				<img  id= "homepagebubbles_1" width="100%" height= "100%"src= "../../../static/home/img/bubbles.png">
+				<img  id= "homepagebubbles_2" width="100%" height= "100%"src= "../../../static/home/img/bubble_1.png"> 
+				<div id="connect-title-content">
+					<span>Connect</span><span style="color:rgba(47,7,7,1);"> with people <br> that will </span><span>support</span><span style="color:rgba(47,7,7,1);"> you.</span>
+				</div>
+				<div id="connect-content">
+					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+				 </div>
+			</div>
+
+	   <div id="sam">
+		  <div class="client-box">
+			 <span class="dot"></span>
+			 <div class='client-sam'>
+				<span>Samuel G.</span><span style="font-style:normal;font-weight:normal;"> commented: I deposited $50.00 today! </span>
+			 </div>
+		  </div>
+	   </div> 
+	   <div id="adam" class="bottom-pill">
+		  <div class="client-box">
+			 <span class="dot"></span>
+			 <div class='client-adam'>
+				<span >Adam H.</span><span class= "clientAdam" style="font-style:normal;font-weight:normal;"> commented: Awesome job Sam! </span>
+			 </div>
+		  </div>
+	   </div> 
+	   <div id="josephine" class="bottom-pill">
+		  <div class="client-box">
+			 <span class="dot"></span>
+			 <div class='client-jo'>
+				<span>Josephine C.</span><span style="font-style:normal;font-weight:normal;"> commented: Nice, I will deposit tomorrow. </span>
+			 </div>
+
+		  </div>
+	   </div> 
+	   <div id="ray" class="bottom-pill">
+		  <div class="client-box">
+			 <span class="dot"></span>
+			 <div class= 'client-ray'>
+				<span>Raymond S.</span><span style="font-style:normal;font-weight:normal;"> commented: Let’s keep saving everyone. </span>
+			 </div>
+		  </div>
+	   </div>-->
+	</div>

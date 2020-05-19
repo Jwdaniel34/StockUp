@@ -3,8 +3,37 @@
 {% block content %}
 <style>
   body {
-    background-color: white;
+    background-image: none;
+    background-color: whitesmoke;
   }
+
+  .bg-steel {
+    background-color: #36b9ac;
+    background-color: darkblue;
+  }
+
+  .bg-steel.scrolled {
+    background-color: #286eb8;
+  }
+
+  .navbar-brand.nbrand {
+    color: white;
+  }
+
+  .nav-item.ncol {
+    color: white;
+  }
+
+  .nav-item.ncol:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .title-form {
+    font-size: 2rem;
+    font-family: sans-serif;
+    font-weight: 100;
+} 
 
   .content-section {
     background-color: white;
@@ -12,7 +41,8 @@
     padding-right: 5rem; 
     padding-bottom: 4rem;
     margin-bottom: 9rem;
-    margin-top: 6rem;
+    margin-top: 7rem;
+    margin-left: 0rem;
     border: 1px solid lightgrey;
     border-radius: 5px;
     width: 100%;
@@ -34,29 +64,51 @@
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+.home-footer {
+    display: flex;
+    background-image: none;
+    color:transparent;
+    background-color: transparent;
+    height: 256px;
+}
+
+.btn-outline-info {
+    width: 100%;
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+footer {
+  color: transparent;
+}
 
 @media (min-width: 868px) {
-  .content-section {width: 57%;}
+  .content-section {
+    width: 57%;
+    margin-left: 14rem;}
 
-  .form-control {width: 59%;}
 }
 
 </style>
+  <div class = "container"> 
     <div class="content-section pt-3">
       <form method = "POST">
           {% csrf_token %} 
           <fieldset class= "form-group">
-              <legend class= "border-bottom mb-4"> Join StockUp Today </legend>
+              <legend class= "border-bottom mb-4 title-form" style="
+              text-align: center;"> Create Account </legend>
               {{ form|crispy }}
           </fieldset>
         <div class= "form-group">
           <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
-          <button class="btn btn-outline-info" type="submit">Sign Up</button>
+          <button class="btn btn-outline-info" type="submit">Create Account</button>
         </div>  
       </form>
         <div class="border-top pt-3">
           <small class="text-muted">
-            Already have an account?<a class= "ml-2" href="{% url 'login' %}"> Sign in</a></small>
+            Already have an account?<a class= "ml-2" href="{% url 'login' %}">Sign in</a></small>
           </div>
       </div>
+  </div>
 {% endblock content %}

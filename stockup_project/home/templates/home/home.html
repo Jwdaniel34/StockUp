@@ -1,120 +1,110 @@
 {% extends "home/base.html" %}
 {% block content %}
-
 <div id="Homepage___01">
-	<div class="media top_container_header">
-	   <div id="safe-space">
-		  <span>Safe space to </span><span style="color:rgba(172,81,164,1);">save</span><span style="color:rgba(244,146,194,1);"> </span><br><span>and </span><span style="color:rgba(172,81,164,1);">invest</span><span> together.</span>
-	   </div>
-	   <div id="adulting-money-save-invest">
-		  <span>Adulting. Money. Save. Teamwork. Responsible.</span>
-	   </div>
-	   <div class="Get_Started_btn" onclick="application.goToTargetView(event)">
-		   <button class="button button1"> Get Started </button>
-		 </div>
-	   <img id="cubes" src="../../../static/home/img/cubes.png">
-	</div>
-	 <div class="middle_container_connect">
-		  <div class="Rectangle_7">
-		  		<image id="Mask_Group_1" x="0" y="0" width="100%" height="100%" src="../../../static/home/img/Mask_Group_1_cz_pattern.png"></image>
-				<img  id= "homepagebubbles_1" width="100%" height= "100%"src= "../../../static/home/img/bubbles.png">
-				<img  id= "homepagebubbles_2" width="100%" height= "100%"src= "../../../static/home/img/bubble_1.png"> 
-				<div id="connect-title-content">
-					<span>Connect</span><span style="color:rgba(47,7,7,1);"> with people <br> that will </span><span>support</span><span style="color:rgba(47,7,7,1);"> you.</span>
+	<div class="top_container_header">
+		<div class="container">
+		<div class="row">
+		   <div  class="col-md-5  safe-space" style="padding-top: 11rem;">
+				<div class= "safe-content"> 
+						<span>Safe space to </span>
+					  <span>save</span>
+					  <br><span>and </span>
+					  <span>invest</span>
+						 <span> together.</span> 
 				</div>
-				<div id="connect-content">
-					<span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+				<div id="adulting-money-save-invest">
+					<span>
+						Save with friends to reach your goals faster
+						and be in control of your wealth by keeping track of your investments.
+
+						</span>
+						<!-- Adulting. Money. Save. Teamwork. Responsible. -->
+				</div>
+				<div class="get-started-btn">
+					<a style="text-decoration: none;" class="btn btn-primary" href="/register/">Get Started</a>
+				</div>
+		   </div>
+			 <div class="col" style="padding-top: 4rem;">
+				<img class="img-display" style="width:133%;opacity: 100%;" height="100%" src="../../../static/home/img/4903.png"></div>
+		</div>
+	   </div>
+	</div>
+	<div class="middle-container">
+		<div class="container" style="display: flex;">
+			<div class="row middle-content">
+				<div class="col-sm-7 connect-image"><img class="img-display" width="100%" height="100%" src="../../../static/home/img/4575.png" style="opacity:100%"></div>
+			<div class="title-content col-sm-4">
+				<span>Stay connected.
+				<div class="connect-content">
+					<p> Build a community to save together while reaching new investment goals and encourage peers to invest into different assets in the process
+					</p>
 				 </div>
 			</div>
 
-	   <div id="sam">
-		  <div class="client-box">
-			 <span class="dot"></span>
-			 <div class='client-sam'>
-				<span>Samuel G.</span><span style="font-style:normal;font-weight:normal;"> commented: I deposited $50.00 today! </span>
-				<!-- <span style="color:rgba(188,188,188,1);">2m</span> -->
-			 </div>
-			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/send_message.png"> -->
-		  </div>
-	   </div> 
-	   <div id="adam" class="bottom-pill">
-		  <div class="client-box">
-			 <span class="dot"></span>
-			 <div class='client-adam'>
-				<span >Adam H.</span><span class= "clientAdam" style="font-style:normal;font-weight:normal;"> commented: Awesome job Sam! </span>
-				<!-- <span class= "clientAdam" style="color:rgba(188,188,188,1);">1m</span> -->
-			 </div>
-			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/reply_message.png"> -->
-		  </div>
-	   </div> 
-	   <div id="josephine" class="bottom-pill">
-		  <div class="client-box">
-			 <span class="dot"></span>
-			 <div class='client-jo'>
-				<span>Josephine C.</span><span style="font-style:normal;font-weight:normal;"> commented: Nice, I will deposit tomorrow. </span>
-				<!-- <span style="color:rgba(188,188,188,1);">20sec</span> -->
-			 </div>
-			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/reply_message.png"> -->
-		  </div>
-	   </div> 
-	   <div id="ray" class="bottom-pill">
-		  <div class="client-box">
-			 <span class="dot"></span>
-			 <div class= 'client-ray'>
-				<span>Raymond S.</span><span style="font-style:normal;font-weight:normal;"> commented: Let’s keep saving everyone. </span>
-				<!-- <span style="color:rgba(188,188,188,1);">10sec</span> -->
-			 </div>
-			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/reply_message.png"> -->
-		  </div>
-	   </div>
-	</div>
-	<div class='Features'> 
-		<h2>Features</h2>
-	</div>
-	<div class= 'row'>
-	   <div class="column">
-		  <div class="card">
-			<img class="cards" src="../../../static/home/img/team-work.png"  width=221px
-			height=221px>
-			 <span class="card-title">Team-Up</span>
-			 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
-		  </div>
-	   </div>	   
-	   <div class="column">
-		  <div class="card">
-			<img class="cards" src="../../../static/home/img/savemoney.svg" width=221px
-			height=221px> 
-			 <span class="card-title">Save</span>
-			 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
-			   </div>
+			  </div>
 			</div>
-	   <div class="column">
-		  <div class="card">
-			<img class="cards" src="../../../static/home/img/savingup.png" width=227px
-			height=227px>
-			 <span class="card-title">Invest</span>
-			 <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </span>
-		  </div>
+		</div>
+	<!-- <div class='Features'> 
+		<h2>Features</h2>
+	</div> -->
+	<div class="mid-last-container">
+		<div class="container">
+	   <div class="row">
+				<div class="col" id="side1">
+					<div class="card" style="background-color: #1c89db;">
+					<img class="cards" src="../../../static/home/img/team-work.png" width="221px" height="221px">
+						<span class="card-title card-content">Team-Up</span>
+						<a style="text-decoration: none;" class="card-content" href="/feature/">Learn More</a>
+						<!-- <span class= "card-content">Learn More</span> -->
+					</div>
+				</div>	   
+				<div class="col" id="side2">
+					<div class="card" style="background-color: #fec612;">
+					<img class="cards" src="../../../static/home/img/savemoney.svg" width="221px" height="221px"> 
+						<span class="card-title card-content">Save</span>
+						<a style="text-decoration: none;" class="card-content" href="/feature/">Learn More</a>
+						<!-- <span class= "card-content">Learn More</span> -->
+						</div>
+					</div>
+				<div class="col" id="side3">
+					<div class="card" style="background-color: #4cdbc4;">
+					<img class="cards" src="../../../static/home/img/savingup.png" width="221px" height="221px">
+						<span class="card-title card-content">Invest</span>
+						<a style="text-decoration: none;" class="card-content" href="/feature/">Learn More</a>
+						<!-- <span class= "card-content">Learn More</span> -->
+					</div>
+				</div>
+		   </div>
+		   <div class="row">
+				<div class="col-md-6"id="pre">
+					Previous
+				</div>
+				<div class="col-md-6" id="next">
+					Next
+				</div>
+			</div>
 	   </div>
-	</div> 
+   </div>
 	<div class= "Lastcontainer">
-	   <div id="start-today">
-		  <span>Start Investing Today</span>
-	   </div>
-	   <div id="adulting-money-save-invest-2">
-		  <span>Adulting. Money. Save. Teamwork. Responsible.</span>
-	   </div>
-	   <div onclick="application.goToTargetView(event)" id="Group_7"></div>
-	   <div class="Get_Started">
-		  <button class="button button1"> Get Started </button>
+		<div class="container">
+			<div id="start-today">
+				<span>Start Investing Today</span>
+			</div>
+			<div id="adulting-money-save-invest-2">
+				<span>Adulting. Money. Save. Teamwork. Responsible.</span>
+			</div>
+			<div class="Get_Started">
+				<a style="text-decoration: none;" class="btn btn-primary lst-btn" href="{% url 'register' %}">Get Started</a>
+			</div>
 	   </div>
 	</div>
  </div>
 
+
 {% endblock content %}
+
+
+<!-- <a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by pch.vector - www.freepik.com</a> -->
+
+			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/send_message.png"> -->
+			 <!-- <img  id= "sent_message" width="100%" height= "100%"src= "../../../static/home/img/reply_message.png"> -->

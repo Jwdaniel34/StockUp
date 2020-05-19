@@ -1,0 +1,493 @@
+body {
+  background-image: linear-gradient(180deg, #36b9AC 10%, #224abe 40%);
+  width: 100%;
+  overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+
+ h2 {
+  font-size: 3rem;
+  }
+  
+  ul {
+    margin: 0;
+  }
+
+  .bg-steel {
+    transition:500ms ease;
+    /* background-color: #46216c; */
+    /* background-color: #b8d4f0; */
+    /* background-color: #5699e6; */
+    background-color:darkblue;
+    box-shadow: 0 0 10.4px 1.6px rgba(25,80,155,0.17);
+    opacity: 1;
+  }
+
+  .bg-steel.scrolled {
+    /* background-color: #66c6ca; */
+    /* background-color: lightblue; */
+    background-color: white;
+
+  }
+
+  .bg-steel.newscrolled {
+    background-color: #afccce;
+    background-color: lightblue;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+
+  .navbar-brand.nbrand {
+    color: black;
+  }
+
+  .navbar-toggler.nswitch {
+    background-color: black;
+  }
+
+  .nav-item {
+    display: block;
+    width: auto;
+    padding: 1em;
+    margin: 0;
+    text-decoration: none;
+    transition:500ms ease;
+    color: #FFFFFF;;
+  }
+
+  .nav-item.ncol {
+    color: black
+  }
+
+  .nav-item:hover {
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-item.ncol:hover {
+    color: black;
+    text-decoration: none;
+  }
+
+  .nav-register{
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 14px 26px;
+  }
+
+
+.nav-register:hover {
+  border: 1px solid #0952b1;
+  background-color: #0952b1;
+}
+
+.nav-register.ncol {
+color: white;
+border: 1px solid #02008b;
+/* background-color: #02008b; */
+background-color: #0e0e0e;
+}
+
+.nav-register.ncol:hover {
+  color: white;
+  border: 1px solid #689cee;
+  background-color: #689cee;
+  }
+
+  .nav-item.active {
+    font-weight: 500;
+  }
+
+  .top_container_header {
+    background-color: #cfe1f6;
+    padding-bottom: 6rem;
+    background-color: #02008b;
+  }
+
+  .safe-space{
+    overflow: visible;
+    text-align: center;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.2rem;
+    color: darkblue;
+    color: white;
+  }
+
+  #adulting-money-save-invest {
+    overflow: visible;
+    text-align: left;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.2rem;
+    color: rgba(255,255,255,1);
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .btn-primary {
+    /* background-color: #46216D; Purple */
+    color: #fff;
+    /* border-color: #569ae6; */
+    border-radius: 36px;
+    padding: 15px 35px;
+    /* background-color: #569ae6; */
+    /* background-color: darkblue; */
+    /* border-color: #0952b1; */
+    /* background-color: #0952b1; */
+    /* background-color: #679bee; */
+    color: black;
+    border-color: white;
+    background-color: white;
+    transition:500ms ease;
+  }
+
+  .btn:hover {
+    background-color: rgb(221, 137, 214);
+    /* border-color:  rgb(221, 137, 214); */
+    border-color: #569ae6;
+    background-color: #569ae6;
+    background-color: #0952b1;
+    border-color: #0952b1;
+    border: 1px solid #0952b1;
+    text-decoration: none;
+  }
+
+  .get-started-btn {
+    overflow: visible;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    --web-animation: fadein 0.3s ease-out;
+    cursor: pointer;
+    margin-top: 2rem;
+    margin-left: -1rem;
+    color: black;
+  }
+
+  .middle-container {
+    /* background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%); */
+    padding-top: 7rem;
+    padding-bottom: 10rem;
+    background-color: lightblue;
+    background-color: white;
+    margin-bottom: -2rem;
+}
+
+  .connect-content {
+    overflow: visible;
+    width: 332px;
+    line-height: 30px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    color: black;
+    color:#3b75c1;
+    margin: 13px 0px 0px 5px;
+  }
+
+  .title-content {
+    overflow: visible;
+    text-align: center;
+    font-family: Arial;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.813rem;
+    color: #3e6aab;
+    color:#3b75c1;
+    transform-origin: left;
+    transition: ease-in 0.3s;
+  }
+
+  .img-display {
+        display: none;
+  }
+
+  .mid-last-container {
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+  }
+
+  #pre {
+    /* border: 2px solid grey; */
+    font-family: arial;
+    font-size: 15px;
+    color: transparent;
+    text-align: center;
+    line-height: 30px;
+    top: 145px;
+  }
+
+  #pre:hover {
+    cursor:pointer;
+  }
+
+  #next {
+    /* border: 2px solid grey; */
+    font-family: arial;
+    font-size: 15px;
+    color: transparent;
+    text-align: center;
+    line-height: 30px;
+    top: 145px;
+  }
+
+  #next:hover {
+    cursor:pointer;
+  }
+
+
+  .cards {
+    filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, 0.161));
+    overflow: visible;
+    margin: auto;
+    /* border: 19px solid white; */
+    border-radius: 100%;
+    text-align: center;
+  }
+
+  .card-title {
+    overflow: visible;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 42px;
+    color: rgba(47,7,7,1);
+    margin-top: .85rem;;
+  }
+
+  .card-content {
+    color: white;
+  }
+
+  .card-content:hover{
+    color:white
+  }
+
+  /* Style the counter cards */
+  .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+  .Lastcontainer {
+    background-color: #e9ecef;
+    padding-top: 2rem;
+    padding-bottom: 14rem;
+    text-align: center;
+  }
+
+  #start-today {
+    overflow: visible;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2.7rem;
+    color: black;
+  }
+
+  #adulting-money-save-invest-2 {
+    overflow: visible;
+    margin-bottom: 40px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    color: black;
+  }
+
+  .lst-btn {
+    background-color: black;
+    color: white;
+  }
+
+  .lst-btn:hover{
+    color: white;
+    border: 1px solid #689cee;
+    background-color: #689cee;
+  }
+
+footer {
+    color: #ffffff;
+    padding-top: 2rem;
+    padding-bottom: 12rem;
+}
+
+.home-footer {
+  /* background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); */
+  background-color: black;
+}
+
+
+@media (min-width: 600px) {
+
+  #connect-content {
+    overflow: visible;
+    width: 337px;
+    line-height: 30px;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    color: rgba(47,7,7,1);
+    margin: 28px 0px 0px 11px;
+  }
+
+  #connect-title-content {
+    overflow: visible;
+    text-align: left;
+    font-family: Avenir;
+    font-style: bold;
+    font-weight: normal;
+    font-size: 2.813rem;
+    color: rgba(3,144,136,1);
+    margin: -637px 0px 0px 0px; }
+
+  .nav-register {
+    border-radius: 36px;
+    margin-left: 4px;
+    padding: 14px 26px;
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .safe-space {
+    padding-top: 2rem;
+    padding-right: 2rem;
+  }
+
+  .img-display {
+    display: block;
+}
+
+  .title-content{
+    margin-left: 2rem;
+    padding-top: 2rem;
+    font-size: 1.7rem;
+    text-align: left;
+  }
+  .nav-register {
+    border-radius: 36px;
+    padding: 15px 45px;
+  }
+
+}
+
+@media (min-width: 868px) {
+
+#start-today {
+  overflow: visible;
+  font-family: Avenir;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 50px;
+  color: black;
+}
+
+#adulting-money-save-invest {
+  text-align: left;
+}
+
+#adulting-money-save-invest-2 {
+  text-align: center;
+}
+
+.row-connect {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.safe-space { 
+  font-size: 2.5rem;
+  text-align: left;
+}
+
+
+  footer {
+    display: flex;
+    color: #ffffff;
+}
+
+.title-content {
+  margin-left: 4rem;
+  margin-top: 5rem;
+  font-size: 2.8rem
+}
+
+.connect-image {
+  margin-left: -1rem;
+}
+
+
+#adulting-money-save-invest {
+  margin-left: 3rem;
+}
+
+.safe-content {
+  margin-left: 3rem;
+}
+
+#side2 {
+  transform: translate(0px) scale(1.5);
+  z-index: 99;
+  transition: all .5s;
+}
+
+#side1 {
+  transform: translate(-100px);
+  z-index: 9;
+  transition: all .5s;
+}
+
+#side3 {
+  transform: translate(100px);
+  z-index: 9;
+  transition: all .5s;
+}
+
+
+
+#pre {
+  /* border: 2px solid grey; */
+  font-family: arial;
+  font-size: 15px;
+  color: gray;
+  text-align: center;
+  line-height: 30px;
+  top: 145px;
+}
+
+#pre:hover {
+  cursor:pointer;
+}
+
+#next {
+  /* border: 2px solid grey; */
+  font-family: arial;
+  font-size: 15px;
+  color: gray;
+  text-align: center;
+  line-height: 30px;
+  top: 145px;
+}
+
+}

@@ -3,6 +3,7 @@
 <style>
   body {
     background-color: white;
+    background-image: none;
   }
 
   h2 {
@@ -30,8 +31,8 @@
     <div class="content-section pt-3">    
         <h2> You have been logged out</h2>
         <div class="border-top pt-3">
-          <small class="text-muted">
-            <a href="{% url 'login' %}"> Log In Again</a></small>
+          <small class="text-muted"> Would you like to log in again?
+            <a href="{% url 'login' %}"> Click Here</a></small>
           </div>
       </div>
 {% endblock content %}

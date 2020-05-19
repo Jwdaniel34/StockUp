@@ -1,32 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # from django.http import HttpResponse
 
 # Create your views here.
-
-post = [
-    {
-        'author': 'CoreyMS',
-        'title': 'Blog Post 1',
-        'content': 'First post cotent',
-        'date_posted': 'August 27, 2018',
-    },
-    {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
-        'content': 'First post cotent',
-        'date_posted': 'August 27, 2018',
-    } 
-]
-
 
 def home(request):
     return render(request, 'home/home.html', {'title': 'Home'})
 
 def feature(request):
-    context = {
-        'posts': post
-    }
-    return render(request, 'home/feature.html', context, {'title': 'feature'})
+    return render(request, 'home/feature.html', {'title': 'feature'})
 
 def about(request):
     return render(request, 'home/about.html', {'title': 'About'})
