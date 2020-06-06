@@ -18,17 +18,12 @@ body {
 
   .bg-steel {
     transition:500ms ease;
-    /* background-color: #46216c; */
-    /* background-color: #b8d4f0; */
-    /* background-color: #5699e6; */
     background-color:darkblue;
     box-shadow: 0 0 10.4px 1.6px rgba(25,80,155,0.17);
     opacity: 1;
   }
 
   .bg-steel.scrolled {
-    /* background-color: #66c6ca; */
-    /* background-color: lightblue; */
     background-color: white;
 
   }
@@ -74,12 +69,15 @@ body {
     text-decoration: none;
   }
 
+
+
   .nav-register{
     background-color: transparent;
     color: white;
     border: none;
     padding: 14px 26px;
   }
+
 
 
 .nav-register:hover {
@@ -90,7 +88,6 @@ body {
 .nav-register.ncol {
 color: white;
 border: 1px solid #02008b;
-/* background-color: #02008b; */
 background-color: #0e0e0e;
 }
 
@@ -134,25 +131,15 @@ background-color: #0e0e0e;
   }
 
   .btn-primary {
-    /* background-color: #46216D; Purple */
-    color: #fff;
-    /* border-color: #569ae6; */
     border-radius: 36px;
-    padding: 15px 35px;
-    /* background-color: #569ae6; */
-    /* background-color: darkblue; */
-    /* border-color: #0952b1; */
-    /* background-color: #0952b1; */
-    /* background-color: #679bee; */
-    color: black;
-    border-color: white;
-    background-color: white;
+    padding: 19px 28px;
+    border: 2px solid #0b4bea;
+    background-color: #044bea;
+    color: #ebf2f9;
     transition:500ms ease;
   }
 
   .btn:hover {
-    background-color: rgb(221, 137, 214);
-    /* border-color:  rgb(221, 137, 214); */
     border-color: #569ae6;
     background-color: #569ae6;
     background-color: #0952b1;
@@ -165,9 +152,9 @@ background-color: #0e0e0e;
     overflow: visible;
     white-space: nowrap;
     text-align: center;
-    font-family: Avenir;
+    font-family: Arial;
     font-style: normal;
-    font-weight: normal;
+    font-weight: bold;
     font-size: 1rem;
     --web-animation: fadein 0.3s ease-out;
     cursor: pointer;
@@ -189,13 +176,14 @@ background-color: #0e0e0e;
     overflow: visible;
     width: 332px;
     line-height: 30px;
-    font-family: Roboto;
+    font-family: Arial;
     font-style: normal;
     font-weight: normal;
-    font-size: 15px;
+    font-size: 1.2rem;
     color: black;
-    color:#3b75c1;
-    margin: 13px 0px 0px 5px;
+    color:#0e2d5c;
+    margin-top: 2rem;
+    padding-left: 2rem;
   }
 
   .title-content {
@@ -205,10 +193,10 @@ background-color: #0e0e0e;
     font-style: normal;
     font-weight: 600;
     font-size: 2.813rem;
-    color: #3e6aab;
-    color:#3b75c1;
+    color: #7eadec;
     transform-origin: left;
     transition: ease-in 0.3s;
+    margin-left: 1rem
   }
 
   .img-display {
@@ -216,7 +204,7 @@ background-color: #0e0e0e;
   }
 
   .mid-last-container {
-    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #fdfbfb 100%);
     padding-top: 10rem;
     padding-bottom: 10rem;
   }
@@ -313,7 +301,12 @@ background-color: #0e0e0e;
 
   .lst-btn {
     background-color: black;
+    border: 2px solid black;
     color: white;
+    border-radius: 36px;
+    padding: 19px 45px;
+    color: #ebf2f9;
+    transition: 500ms ease;
   }
 
   .lst-btn:hover{
@@ -335,36 +328,13 @@ footer {
 
 
 @media (min-width: 600px) {
-
-  #connect-content {
-    overflow: visible;
-    width: 337px;
-    line-height: 30px;
-    font-family: Avenir;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    color: rgba(47,7,7,1);
-    margin: 28px 0px 0px 11px;
-  }
-
-  #connect-title-content {
-    overflow: visible;
-    text-align: left;
-    font-family: Avenir;
-    font-style: bold;
-    font-weight: normal;
-    font-size: 2.813rem;
-    color: rgba(3,144,136,1);
-    margin: -637px 0px 0px 0px; }
-
   .nav-register {
     border-radius: 36px;
     margin-left: 4px;
-    padding: 14px 26px;
-    border: 2px solid white;
-    background-color: white;
-    color: black;
+    padding: 20px 30px;
+    border: 2px solid #02008b;
+    background-color: #0b4bea;
+    color: #ebf2f9;
   }
 }
 
@@ -429,9 +399,15 @@ footer {
 
 .title-content {
   margin-left: 4rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
   font-size: 2.8rem
 }
+
+.connect-content {
+  margin: 13px 0px 0px 5px;
+  padding-left: 0rem;
+  }
+
 
 .connect-image {
   margin-left: -1rem;
@@ -470,7 +446,7 @@ footer {
   /* border: 2px solid grey; */
   font-family: arial;
   font-size: 15px;
-  color: gray;
+  color: black;
   text-align: center;
   line-height: 30px;
   top: 145px;
@@ -484,7 +460,7 @@ footer {
   /* border: 2px solid grey; */
   font-family: arial;
   font-size: 15px;
-  color: gray;
+  color: black;
   text-align: center;
   line-height: 30px;
   top: 145px;

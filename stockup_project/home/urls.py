@@ -23,10 +23,6 @@ urlpatterns = [
     path('feature/', views.feature, name = 'feature'),
     path('about/', views.about, name= 'about'),
     path('contact/', views.contact, name ='contact'),
-    path('login/', views.login, name='login'),
-    path('register/', views.register, name='register'),
-    path('javascript/', views.javascript, name = 'javascript'),
-
 ]
 
 urlpatterns += staticfiles_urlpatterns()

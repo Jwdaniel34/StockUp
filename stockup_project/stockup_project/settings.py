@@ -80,6 +80,14 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'dividend': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dividends',
+        'USER': 'root',
+        'PASSWORD': 'CoolMan03',
+        'HOST': '34.73.80.146',
+        'PORT': '3306',
     }
 }
 

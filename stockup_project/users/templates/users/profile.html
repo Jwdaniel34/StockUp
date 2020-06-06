@@ -1,15 +1,5 @@
 {% load static %}
 {% load staticfiles %}
-<!-- <style>
-        .profile-body {
-            margin-bottom: 100%;
-            margin-top: 13%;
-        }
-    </style>
-        <div class='profile-body'>
-        <h1>/h1>
-        </div> -->
-      <!-- Page Wrapper -->
 <!DOCTYPE html>
 <html lang="en">
       
@@ -92,6 +82,7 @@
                   <h6 class="collapse-header">Internal Transfer:</h6>
                   <a class="collapse-item" href="buttons.html">Deposit</a>
                   <a class="collapse-item" href="cards.html">Withdraw</a>
+                  <a class="collapse-item" href="cards.html">Link Account</a>
                 </div>
               </div>
             </li>
@@ -123,7 +114,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
               <!-- <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages"> -->
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{% url 'stockdashboard' %}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Stock Portolio</span>
               </a>

@@ -1,0 +1,170 @@
+{% extends "users/skeleton.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+<style>
+  ul.Labelclass {
+    column-count: 2;
+    list-style-type: none;
+    text-align: justify;
+}
+</style>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800"> Stock Investment Portfolio </h1>
+  </div>
+
+  <!-- Watchlist Portfolio -->
+  <div class=row>
+      <div class= "col-xl-8 col-lg-7">
+          <div class= "card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <div class="m-0 font-weight-bold text-primary">Stock Invesments</div>
+                  <div class= "dropdown no-arrow">
+                      <input class="search-bar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbol..">
+                      <div class= "btn-second"> <i class="fas fa-search fa-sm"></i></div>
+                    </div> 
+                </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div class="chart-area">
+                            <table id="myTable">
+                              <tr class="header">
+                                <th>Symbol</th>
+                                <th>Company</th>
+                                <th>Sector</th>
+                                <th style="width: 10rem">Close</th>
+                                <th style="width: 10rem">Dividend</th>
+                                <th style="width: 9rem;">Future Price</th>
+                              </tr>
+                              {% for i in data %}
+                              <tr> 
+                                  <td>{{ i.symbol }}</td>
+                                  <td>{{ i.company }}</td>
+                                  <td> {{ i.sector }}</td>
+                                  <td> $ {{ i.prevclose|floatformat:2 }}</td>
+                                  <td> {{ i.dividend|floatformat:2 }}</td>
+                                  <td> $ {{ i.targetprice|floatformat:2 }}</td>
+                              </tr>
+                                
+                              {% endfor %} 
+                              </table>
+                  <!-- <canvas id="myAreaChart"></canvas> -->
+                        </div>
+                    </div>
+            </div> 
+        </div>
+        <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+              <h6 class="m-0 font-weight-bold text-primary">Stocks Investment Overview</h6>
+              <div class="dropdown no-arrow">
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                  <div class="dropdown-header">Dropdown Header:</div>
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-pie pt-4 pb-3">
+                <canvas id="myDivChart"></canvas>
+              </div>
+              <div class="mt-2 text-center small">
+                <ul class= "Labelclass" id="labelClass">
+              {% for d in Barlabels %}
+                    <li><i class="fas fa-circle" id="colorchange"></i><span class="sector"> {{d}}</span></li>
+                {% endfor %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+        <!-- Area Chart -->
+          <div class="row">
+              <!-- Area Chart -->
+              <div class="col-xl-8 col-lg-7">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Stocks Portfolio</h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body" style="height: 400px;">
+                    <div class="chart-bar">
+                      <canvas id="myDivChart2"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!-- Pie Chart -->
+              <div class="col-xl-4 col-lg-5">
+                <div class="card shadow mb-4">
+                  <!-- Card Header - Dropdown -->
+                  <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Stocks Investment Overview</h6>
+                    <div class="dropdown no-arrow">
+                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                      </a>
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Card Body -->
+                  <div class="card-body">
+                    <div class="chart-pie pt-4 pb-3">
+                      <canvas id="myPieChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-primary"></i> Technology 
+                      </span>
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-success"></i> Industrial
+                      </span>
+                      <span class="mr-2">
+                        <i class="fas fa-circle text-info"></i> Consumer Goods
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+ <!--Javascript -->
+{{ Bardata|json_script:"Bardata"}}
+{{ Barlabels|json_script:"Barlabels"}}
+{{ colors|json_script:"colors"}}
+<script type="text/javascript">
+</script>
+
+{% endblock content %}
