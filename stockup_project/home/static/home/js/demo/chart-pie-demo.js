@@ -78,3 +78,5 @@ for(var i = 0; i < colored.length; i++) {
 listItems[i].style.color = colored[i] 
 textItems[i].style.color = "black" 
 }
+
+

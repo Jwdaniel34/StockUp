@@ -8,6 +8,8 @@ from .models import MlDividends
 from django.db.models import Sum, Count
 from datetime import datetime, timedelta
 import json
+import requests
+from django.utils import timezone
 # Create your views here.
 
 def register(request):
@@ -27,15 +29,15 @@ def register(request):
 def stockdashboard(request):
     Barlabels = []
     Bardata = []
-    today = datetime.now()
-    yesterday = datetime.today() - timedelta(days=0)
+    today = timezone.now()  - timedelta(days=1)
     # Daily Price action
-    div = MlDividends.objects.filter(load_date__month= yesterday.month, load_date__day = yesterday.day).using('dividend')
+    div = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
     if div.exists():
-        div = MlDividends.objects.filter(load_date__month= yesterday.month, load_date__day = yesterday.day).using('dividend')
+        div = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
     else:
-        yesterday = datetime.today() - timedelta(days=1)
+        yesterday = timezone.now() - timedelta(days=2) 
         div = MlDividends.objects.filter(load_date__month= yesterday.month, load_date__day = yesterday.day).using('dividend')
+
 
     # Dashboard Chart
     queryset = div.values('sector').annotate(sector_count=Count('sector'))
@@ -54,21 +56,51 @@ def stockdashboard(request):
                       'rgba(218, 71, 145, 0.74)', # Financial
                       'rgba(255, 99, 132, 0.2)', # Healthcare
                   ]
-
     labelsColors = dict(zip(Barlabels, colors))
     zippedLC = [(Barlabels, colors)]
+
+     #Timeseries Chart
+    timeseries = MlDividends.objects.using('dividend')
+    timeseries_symbol = MlDividends.objects.filter(
+                                symbol= "A",).values('prevclose','load_date').using('dividend')
+    ts_price = []
+    ts_dates = []
+    for tsstocks in timeseries_symbol:
+        ts_price.append(float(tsstocks['prevclose']))
+        ts_dates.append(tsstocks['load_date'])
+
     context = {
         "data": div,
         'Bardata': Bardata,
         'Barlabels': list(labelsColors.keys()),
         'colors': list(labelsColors.values()),
         'zippedLC': zippedLC,
+        'ts_price': ts_price,
+        'ts_dates': ts_dates,
     }
 
     return render(request, 'users/stockdashboard.html', context )
 
-
-
+def tickersearch(request):
+    # pk_7b4f56cf15be4f548126330ab143502c 
+    if request.method == 'POST':
+        ticker = request.POST['ticker']
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+        
+        try:
+            api = json.loads(api_request.content)
+            context = {'api': api
+            }
+            return render(request, 'users/ticker.html', context)
+        except Exception as e:
+            api = "Error..."
+            context = {'api': api
+            }
+            return render(request, 'users/ticker.html', context)
+    else: 
+        search = { 'tickers': "Enter a Ticker Symbol Above..."
+        }
+        return render(request, 'users/ticker.html', search)
 
 @login_required
 def profile(request):

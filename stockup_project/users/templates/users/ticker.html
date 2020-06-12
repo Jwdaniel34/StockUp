@@ -1,0 +1,88 @@
+{% extends "users/searchskeleton.html" %}
+{% load static %}
+{% load staticfiles %}
+{% block content %}
+
+
+    {% if tickers %}
+        {{ tickers }}
+    {% endif %}
+
+    {%  if api  %}
+        {% if api == "Error.." %}
+            <h1>Symbol is not in our system yet. We will update soon...</h1>
+        {% else %}
+            <div class= "container" style="padding-top: 2rem;">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 style= "color:black"> {{ api.companyName }} ({{api.symbol}})</h1>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary watchlist"  style="
+                        width: 100%; background-color: darkblue;">Watchlist</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary purchase"  style="
+                        width: 100%; background-color: green;">Purchase</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary addToPort"  style="
+                        width: 100%; background-color: purple;"
+                        >Add To Portfolio</button>
+                    </div>
+            </div>
+        </div>
+        <br/>
+        <div class = "container">
+            <h3> Stats </h3>
+            Price: ${{api.latestPrice }} <br/>
+            Previous Close: ${{ api.previousClose }} <br/>
+            Market Cap: ${{ api.marketCap }} <br/>
+            YTD Change: ${{ api.ytdChange }} <br/>
+            52wk High: ${{ api.week52High }} <br/>
+            52wk Low: ${{ api.week52Low }} <br/></div>
+            <br/>
+            <div class="container">
+                <h3> About {{ api.companyName }}</h3>
+                <p>
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
+                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
+                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
+                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
+                </p>
+         </div>
+        <br/>
+
+
+        {% endif %}
+
+{% endif %}
+{% endblock content %}
+
+<!-- {'symbol': 'AAPL', 'companyName': 'Apple, Inc.', 
+    'primaryExchange': 'NASDAQ', 'calculationPrice': 
+    'iexlasttrade', 'open': None, 'openTime': None, 
+    'openSource': 'official', 'close': None, 
+    'closeTime': None, 'closeSource': 'official', 
+    'high': None, 'highTime': 1591733400543, 
+    'highSource': '15 minute delayed price',
+     'low': None, 'lowTime': 1591709401038, 
+     'lowSource': '15 minute delayed price',
+      'latestPrice': 344.13, 
+      'latestSource': 'IEX Last Trade',
+       'latestTime': 'June 9, 2020', 'latestUpdate': 1591732798007, 
+       'latestVolume': None, 'iexRealtimePrice': 344.13,
+        'iexRealtimeSize': 100, 'iexLastUpdated': 1591732798007,
+         'delayedPrice': None, 'delayedPriceTime': None,
+          'oddLotDelayedPrice': None, 'oddLotDelayedPriceTime': None, 
+          'extendedPrice': None, 'extendedChange': None, 
+          'extendedChangePercent': None, 'extendedPriceTime': None,
+           'previousClose': 333.46, 'previousVolume': 23913634,
+            'change': 10.67, 'changePercent': 0.032, 'volume': None,
+             'iexMarketPercent': 0.009109956884001551, 'iexVolume': 335627, 'avgTotalVolume': 32914124, 'iexBidPrice': 0, 'iexBidSize': 0, 'iexAskPrice': 0, 'iexAskSize': 0, 'iexOpen': None, 'iexOpenTime': None, 'iexClose': 344.13, 'iexCloseTime': 1591732798007, 'marketCap': 1491576424200, 'peRatio': 26.76, 'week52High': 345.61, 'week52Low': 190.3, 
+    'ytdChange': 0.142238, 'lastTradeTime': 1591732798007, 'isUSMarketOpen': False} -->
