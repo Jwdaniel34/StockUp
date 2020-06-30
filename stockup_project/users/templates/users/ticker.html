@@ -3,6 +3,19 @@
 {% load staticfiles %}
 {% block content %}
 
+<style>
+
+  .ticker-tooltip{
+    border-radius: 20px 20px;
+    font-size: 8.7px;
+    background-color: whitesmoke;
+    border-color: lightslategray;
+    margin-left: 7px;
+    color: black;
+    margin-bottom: 0.5rem;
+    opacity: 35%;
+}
+</style>
 
     {% if tickers %}
         {{ tickers }}
@@ -22,38 +35,46 @@
                         width: 100%; background-color: darkblue;">Watchlist</button>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-secondary purchase"  style="
-                        width: 100%; background-color: green;">Purchase</button>
+                        <a data-toggle="modal" data-target="#PurchaseModal">
+                            <button type="button" class="btn btn-secondary purchase"  style="
+                            width: 100%; background-color: green;">Purchase</button>
+                        </a>
                     </div>
                     <div class="col">
-                        <button type="button" class="btn btn-secondary addToPort"  style="
-                        width: 100%; background-color: purple;"
-                        >Add To Portfolio</button>
+                        <a data-toggle="modal" data-target="#addtoportModal">
+                            <button type="button" class="btn btn-secondary addToPort"  style="
+                            width: 100%; background-color: purple;"
+                            >Add To Portfolio</button>
+                        </a>
                     </div>
             </div>
         </div>
         <br/>
         <div class = "container">
-            <h3> Stats </h3>
-            Price: ${{api.latestPrice }} <br/>
-            Previous Close: ${{ api.previousClose }} <br/>
-            Market Cap: ${{ api.marketCap }} <br/>
-            YTD Change: ${{ api.ytdChange }} <br/>
-            52wk High: ${{ api.week52High }} <br/>
-            52wk Low: ${{ api.week52Low }} <br/></div>
+          
             <br/>
+            <h3> Stats </h3>
+            <div class="row">
+            <div class="col">
+            Sector: {{ticker_company.sector}} <button class= "btn ticker-tooltip" data-toggle="tooltip" data-placement="right" title="Sector" aria-describedby="tooltip">?</button></br>
+            Price: ${{api.latestPrice|floatformat:2 }}<button class= "btn ticker-tooltip" data-toggle="tooltip" title="Current Close" aria-describedby="tooltip">?</button> <br/>
+            Previous Close: ${{ api.previousClose|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+            Current Dividend: ${{ ticker_dividend|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+            <!-- Frequent Payment: ${{ ticker_dividend.frequency }} <br/> -->
+          </div>
+
+            <div class="col">
+              Market Cap: ${{ api.marketCap }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+              YTD Change: ${{ api.ytdChange }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+              52wk High: ${{ api.week52High }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+              52wk Low: ${{ api.week52Low }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
+              <!-- Dividends Descriptiont: {{ ticker_dividend.description}} <br/> -->
+            </div>
+           </div></div> <br/>
             <div class="container">
                 <h3> About {{ api.companyName }}</h3>
                 <p>
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
-                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
-                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
-                    Repudiandae ut facere totam rem quasi, officiis dolores eum quisquam optio 
-                    veritatis possimus facilis! Nisi expedita tempore modi, quaerat optio assumenda quos.
+                  {{ticker_company.description }}
                 </p>
          </div>
         <br/>
@@ -62,7 +83,110 @@
         {% endif %}
 
 {% endif %}
+
+
+<!-- Portfolio Modal-->
+<div class="modal-ticker fade " id="addtoportModal" tabindex="-1" role="dialog" aria-labelledby="PortModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="PortModalLabel">Add {{ api.companyName }} To Portfolio?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Shares">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Price">
+              </div>
+            </div>
+          </form></div>
+
+        <div class="modal-footer">
+        <a class="btn btn-primary" href="#">Add</a>
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+  <!-- Purchase Modal-->
+<div class="modal-ticker fade " id="PurchaseModal" tabindex="-1" role="dialog" aria-labelledby="PurchaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="PurchaseModalLabel"
+           > Purchase {{ api.companyName }} with Broker</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <a target="_blank" rel="noopener noreferrer" href="https://robinhood.com/login">
+                  <button type="button" class="btn btn-secondary robinhood"  style="
+                  width: 100%; border-color: lightgreen
+                  ;background-color: rgba(195,245,60,1); color: black">Robinhood</button>
+              </a>
+              </div>
+              <div class="col">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.tdameritrade.com/home.page">
+                  <button type="button" class="btn btn-secondary tdameritrade"  style="
+                  width: 100%; background-color: #40a829;">TDAmeritrade</button>
+              </a>
+              </div>
+            </div>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col">
+                <a target="_blank" rel="noopener noreferrer" href="https://us.etrade.com/e/t/user/login">
+                  <button type="button" class="btn btn-secondary etrade"  style="
+                  width: 100%; border-color: purple
+                  ;background-color: purple; color: white">E-trade</button>
+              </a>
+              </div>
+              <div class="col">
+                <a target="_blank" rel="noopener noreferrer" href="https://www.fidelity.com/">
+                  <button type="button" class="btn btn-secondary fidelity"  style="
+                  width: 100%; background-color: #568200;">Fidelity</button>
+              </a>
+              </div>
+            </div>
+          </div>
+        <div class="modal-footer">
+         <!-- <a class="btn btn-primary" href="#">Buy</a> -->
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/jquery.js"></script>
+<!-- <script src="bootstrap/js/bootstrap-alert.js"></script>
+<script src="bootstrap/js/bootstrap-modal.js"></script>
+<script src="bootstrap/js/bootstrap-transition.js"></script>
+<script src="bootstrap/js/bootstrap-tooltip.js"></script> -->
+<script>
+  $(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+  </script>
+
 {% endblock content %}
+
+
 
 <!-- {'symbol': 'AAPL', 'companyName': 'Apple, Inc.', 
     'primaryExchange': 'NASDAQ', 'calculationPrice': 

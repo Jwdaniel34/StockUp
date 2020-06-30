@@ -21,8 +21,6 @@ def login(request):
 def register(request):
     return render(request, 'home/register.html', {'title' : 'Register'})
 
-def javascript(request):
-    return render(request, 'home/javascript.html', {'title': 'Javascript'})
 
 
 

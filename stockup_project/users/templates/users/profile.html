@@ -160,20 +160,22 @@
                 </button>
       
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                <form action= "{% url 'ticker' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                    method="POST">
+                    {% csrf_token %}
+                  <div class="input-group ui-widget">
+                    <input id="tickerssymbol" type="search" class="form-control  bg-light border-0 small" 
+                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="ticker">
                     <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
+                      <button class="btn btn-primary" type="submit">
                         <i class="fas fa-search fa-sm"></i>
                       </button>
                     </div>
                   </div>
                 </form>
-      
+
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-      
                   <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                   <li class="nav-item dropdown no-arrow d-sm-none">
                     <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -305,7 +307,11 @@
                   <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ user.username }}</span>
-                      <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
+                    {% if request.user.profile.photo.url %}
+                      <img class="img-profile rounded-circle" src="{{request.user.profile.photo.url}}">
+                    {% else %}
+                      <img class="img-profile rounded-circle" src="../../../static/home/img/profileimg.png">
+                    {% endif %}
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -313,7 +319,7 @@
                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                         Profile
                       </a>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="{% url 'edit' %}">
                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                         Settings
                       </a>
@@ -339,7 +345,7 @@
       
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                  <h1 class="h3 mb-0 text-gray-800"> Welcome back {{ user.first_name}}!</h1>
+                  <h1 class="h3 mb-0 text-gray-800"> Hello {{ user.first_name}}, Let's StockUp!</h1>
                   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                 </div>
       
@@ -732,7 +738,8 @@
             </div>
           </div>
         </div>
-      
+
+{{ tickersymbols|json_script:"tickersymbols" }}
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -752,6 +759,10 @@
     <!-- Page level custom scripts -->
     <script src="{% static 'home/js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'home/js/demo/chart-pie-demo.js' %}"></script>
+    <script src="{% static 'home/js/demo/search-ticker.js' %}"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 
 </html>

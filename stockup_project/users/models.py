@@ -6,6 +6,8 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class MlDividends(models.Model):
@@ -75,3 +77,32 @@ class TechnicalDivs(models.Model):
     class Meta:
         managed = False
         db_table = 'TECHNICAL_DIVS'
+
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                on_delete=models.CASCADE)
+    date_of_birth = models.DateField(blank=True, null=True)
+    photo = models.ImageField(upload_to= 'users/%Y/%m/%d/',null=True, blank=True,)
+
+    def __str__(self):
+        return f'Profile for user {self.user.username}'
+
+                    
+
+
+
+# class UserStockPortfolio(models.Model):
+    # name = models.ForeignKey(Users, on_delete=SET_NULL)
+    # symbol = models.CharField(max_length=200, null=True)
+    # sector = models.CharField(max_length=200, null=True)
+    # price = models.FloatFiield(null=True)
+    # dividends = models.FloatFiield(null=True)
+    # n_shares = models.IntField(null= True)
+    # date_created = models.DateTimeField(auto_now_add=True, null = True)
+
+
+# class UserStockProfitTracker(models.Model):
+    # name = models.ForeignKey(Users, on_delete=SET_NULL)
+    # cash_amount =  models.FloatFiield(null=True) 
+    # date_created = models.DateTimeField(auto_now_add=True, null = True)
+
