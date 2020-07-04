@@ -25,7 +25,7 @@ SECRET_KEY = 's+evvwe@nrr_wl5-^4%@z$@v_qu=2vir^phnqw7mj7wylmh9x='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['stockup.com', 'localhost','127.0.0.1']
 
 
 # Application definition
@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_elasticsearch_dsl',
-    'social_django'
+    'social_django',
+    'django_extensions',
+    'sslserver',
 ]
 
 ELASTICSEARCH_DSL = {
