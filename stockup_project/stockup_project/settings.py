@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'social_django',
     'django_extensions',
     'sslserver',
+    'phone_field',
 ]
 
 ELASTICSEARCH_DSL = {

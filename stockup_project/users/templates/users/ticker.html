@@ -1,6 +1,7 @@
 {% extends "users/searchskeleton.html" %}
 {% load static %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 <style>
@@ -41,11 +42,16 @@
                         </a>
                     </div>
                     <div class="col">
-                        <a data-toggle="modal" data-target="#addtoportModal">
+                        <!-- <a data-toggle="modal" data-target="#addtoportModal">
                             <button type="button" class="btn btn-secondary addToPort"  style="
                             width: 100%; background-color: purple;"
                             >Add To Portfolio</button>
-                        </a>
+                        </a> -->
+                        <a href= "{% url 'addstock' %}">
+                          <button type="button" class="btn btn-secondary addToPort"  style="
+                          width: 100%; background-color: purple;"
+                          >Add To Portfolio</button>
+                      </a>
                     </div>
             </div>
         </div>
@@ -58,9 +64,9 @@
             <div class="col">
             Sector: {{ticker_company.sector}} <button class= "btn ticker-tooltip" data-toggle="tooltip" data-placement="right" title="Sector" aria-describedby="tooltip">?</button></br>
             Price: ${{api.latestPrice|floatformat:2 }}<button class= "btn ticker-tooltip" data-toggle="tooltip" title="Current Close" aria-describedby="tooltip">?</button> <br/>
-            Previous Close: ${{ api.previousClose|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
-            Current Dividend: ${{ ticker_dividend|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
-            <!-- Frequent Payment: ${{ ticker_dividend.frequency }} <br/> -->
+            Previous Close: ${{ api.previousClose|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Last Day Close Price" aria-describedby="tooltip">?</button><br/>
+            Previous Dividend: ${{ ticker_dividend|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Last Amount Paid" aria-describedby="tooltip">?</button><br/>
+            Next Dividend: ${{ div_type.amount|floatformat:2 }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title=" Next Payment {{div_type.paymentDate}}" aria-describedby="tooltip">?</button><br/>
           </div>
 
             <div class="col">
@@ -68,7 +74,8 @@
               YTD Change: ${{ api.ytdChange }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
               52wk High: ${{ api.week52High }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
               52wk Low: ${{ api.week52Low }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Hooray!" aria-describedby="tooltip">?</button><br/>
-              <!-- Dividends Descriptiont: {{ ticker_dividend.description}} <br/> -->
+              Frequent Payment: {{ div_type.frequency|title }} <button class= "btn ticker-tooltip" data-toggle="tooltip" title="How many times they pay you in a year
+              " aria-describedby="tooltip">?</button><br/>
             </div>
            </div></div> <br/>
             <div class="container">
@@ -97,21 +104,27 @@
         </div>
         <div class="modal-body">
 
-          <form>
+          <form method="POST" action="{% url 'ticker' %}" >
             <div class="row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Shares">
+                {% csrf_token %}
+                <input class="form-control" type="hidden" name="stockform">
+                <!-- <input class="form-control" type="text" placeholder="Shares" name="n_shares"> -->
+                <!-- <input class="form-control" type="hidden" placeholder="Shares" name = "form_type" value="formOne"> -->
+                {{ stock_form|crispy }}
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Price">
-              </div>
+                <!-- <input class="form-control"  type="text" class="form-control" placeholder="Price" name="price"> -->
+                <!-- <input type="text" class="form-control" placeholder="Price"> -->
+               
+              </div> 
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" type="submit">Add</button>
+            <!-- <a class="btn btn-primary" href="#">Add</a> -->
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
             </div>
           </form></div>
-
-        <div class="modal-footer">
-        <a class="btn btn-primary" href="#">Add</a>
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        </div>
       </div>
     </div>
 </div>

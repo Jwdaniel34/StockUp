@@ -8,6 +8,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from phone_field import PhoneField
 
 
 class MlDividends(models.Model):
@@ -82,23 +83,55 @@ class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
+    state = models.CharField(max_length=30,blank=True, null= True)
+    city = models.CharField(max_length=30,blank=True, null = True)
+    phone = PhoneField(blank=True, null = True)
     photo = models.ImageField(upload_to= 'users/%Y/%m/%d/',null=True, blank=True,)
 
     def __str__(self):
-        return f'Profile for user {self.user.username}'
+        return self.user.username
 
                     
+class UserStockPortfolio(models.Model):
+    user = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    symbol = models.CharField(max_length=30,blank=True, null=True)
+    company = models.CharField(max_length=150, blank= True, null= True)
+    sector = models.CharField(max_length=30,blank=True, null=True)
+    pay_type = models.CharField(max_length=30, blank= True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    dividends = models.FloatField(blank= True, null=True)
+    n_shares = models.IntegerField(blank=True, null= True)
+    tot_price = models.FloatField(
+        default=0,  # This value will be overwritten during save()
+        editable=True,  # Hides this field in the admin interface.
+    )
+    date_created = models.DateTimeField(auto_now_add=True, null = True)
+
+    def save(self, *args, **kwargs):
+        # calculate sum before saving.
+        self.tot_price = self.calculate_sum()
+        super(UserStockPortfolio, self).save(*args, **kwargs)
+
+    def calculate_sum(self):
+        """ Calculate a numeric value for the model instance. """
+        try:
+            value_a = self.price
+            value_b = self.n_shares
+            return value_a * value_b
+        except:
+            # Value_a or value_b is not in the VALUES dictionary.
+            # Do something to handle this exception.
+            # Just returning the value 0 will avoid crashes, but could 
+            # also hide some underlying problem with your data.
+            return 0
+
+    def __str__(self):
+     try:
+         return f'{str(self.user.user.username)}-Order: {str(self.id)}'
+     except:
+         return "UserProfile has No User instance"
 
 
-
-# class UserStockPortfolio(models.Model):
-    # name = models.ForeignKey(Users, on_delete=SET_NULL)
-    # symbol = models.CharField(max_length=200, null=True)
-    # sector = models.CharField(max_length=200, null=True)
-    # price = models.FloatFiield(null=True)
-    # dividends = models.FloatFiield(null=True)
-    # n_shares = models.IntField(null= True)
-    # date_created = models.DateTimeField(auto_now_add=True, null = True)
 
 
 # class UserStockProfitTracker(models.Model):

@@ -4,11 +4,12 @@
 {% block content %}
 <style>
   ul.Labelclass {
-    column-count: 2;
+    column-count: 1;
     list-style-type: none;
     text-align: justify;
 }
 </style>
+
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800"> Stock Investment Portfolio </h1>
   </div>
@@ -34,7 +35,12 @@
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body" style="height: 433px;">
+                <div class="card-body" style="height: 30.5rem;">
+                    <div class="row" style="padding-left: 12rem">
+                      <div class="col-sm-2">ROI: </br>{{roi|floatformat:2}}% </div>
+                      <div class="col-sm-3">Total Cash Gain: </br>${{cash_gained|floatformat:2}}  </div>
+                      <div class="col-sm-3">Yearly Dividend: </br>${{ann_div|floatformat:2}} </div>
+                    </div>
                   <div class="chart-area" style="height:25rem">
                     <canvas id="myPortfolio" width="200" height="200"></canvas>
                   </div>

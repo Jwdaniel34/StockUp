@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, StockPortfolioForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import MlDividends, Profile
+from .models import MlDividends, Profile, UserStockPortfolio 
 from django.db.models import Sum, Count
 from datetime import datetime, timedelta
 import json
@@ -63,16 +63,56 @@ def stockdashboard(request):
     Bardata = []
     today = timezone.now() - timedelta(days=1)
     # Daily Price action
-    div = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
-    if div.exists():
-        div = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
+    table = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
+    if table.exists():
+        table = MlDividends.objects.filter(load_date__month= today.month, load_date__day = today.day).using('dividend')
     else:
         yesterday = timezone.now() - timedelta(days=2) 
-        div = MlDividends.objects.filter(load_date__month= yesterday.month, load_date__day = yesterday.day).using('dividend')
+        table = MlDividends.objects.filter(load_date__month= yesterday.month, load_date__day = yesterday.day).using('dividend')
 
 
     # Dashboard Chart
-    queryset = div.values('sector').annotate(sector_count=Count('sector'))
+    my_p = Profile.objects.get(user=request.user)
+    sp = UserStockPortfolio.objects.filter(user__user__username=my_p)
+
+
+    pl = sp.aggregate(Sum('price'))
+    div = sp.values('dividends')
+    payT = sp.values('pay_type')
+    tot_div = []
+    pO = []
+
+    for pay, ty in zip(div,payT):
+        pay = pay.get('dividends')
+        ty = ty.get('pay_type')
+
+        if ty == 'Quarterly':
+            quart = 4 * pay
+            tot_div.append(quart)
+        elif ty =='Monthly':
+            month = 12 * pay
+            tot_div.append(month)
+        elif ty == 'Semi-Annual':
+            semi = 2 * pay
+            tot_div.append(semi)
+        else:
+            annual = 1 * pay
+            tot_div.append(annual)
+
+
+    for sym in sp.values('symbol'):
+        sym = sym.get('symbol').lower()
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+        price = json.loads(api_request.content)
+        price = price.get('latestPrice')
+        pO.append(int(price))
+
+    pl = pl.get('price__sum') # Initial Price
+    pO = sum(pO) # Current Price
+    d = sum(tot_div) # Dividends
+    cashGained = (pO-pl)+d/pO
+    roi = cashGained/pl * 1
+    queryset = sp.values('sector').annotate(sector_count=Count('sector'))
     for stocks in queryset:
         Barlabels.append(stocks['sector'])
         Bardata.append(stocks['sector_count'])
@@ -111,7 +151,7 @@ def stockdashboard(request):
 
     
     context = {
-        "data": div,
+        "data": table,
         'Bardata': Bardata,
         'Barlabels': list(labelsColors.keys()),
         'colors': list(labelsColors.values()),
@@ -119,58 +159,108 @@ def stockdashboard(request):
         'ts_price': ts_price,
         'ts_dates': ts_dates,
         'tickersymbols': tickersymbols,
+        'ann_div': d,
+        'cash_gained': cashGained,
+        'roi': roi,
     }
 
     return render(request, 'users/stockdashboard.html', context )
 
 @login_required
 def tickersearch(request):
-    # pk_7b4f56cf15be4f548126330ab143502c 
+    # pk_7b4f56cf15be4f548126330ab143502c
+    ticker_company = None
+    ticker_dividend = None
     import re
-
     tickersymbol = MlDividends.objects.order_by(
                                         "symbol").values('symbol', 'company').distinct().using('dividend')
-
     tickersymbols = []
-
     for ticks in tickersymbol:
         sym = f"{ticks['symbol']} - {ticks['company']}"
         tickersymbols.append(sym)
 
-    if request.method == 'POST':
-        ticker = request.POST['ticker']
+    if request.POST.get('ticker'):
+        ticker = request.POST.get('ticker')
         ticker = ticker.split("-")
         ticker = ticker[0].replace(" ","")
         api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
         api_company = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/company?token=pk_7b4f56cf15be4f548126330ab143502c")
         api_dividend = requests.get(f"https://cloud.iexapis.com/stable/data-points/{ticker.lower()}/LAST-DIVIDEND-AMOUNT?token=pk_7b4f56cf15be4f548126330ab143502c")
-        # api_dividends = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/dividends/1m?token=pk_7b4f56cf15be4f548126330ab143502c")
+        api_divType= requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/dividends/ytd?token=pk_7b4f56cf15be4f548126330ab143502c")
+
 
         try:
             api = json.loads(api_request.content)
             ticker_company = json.loads(api_company.content)
-            ticker_dividend = json.loads(api_dividend.content)
+            ticker_dividend = json.loads(api_dividend.content) 
+            dividend_type = json.loads(api_divType.content)
+            request.session['symbol'] = api.get('symbol')
+            request.session['companyname'] = api.get('companyName')
+            request.session['sector'] = ticker_company.get('sector')
+            request.session['dividend'] = ticker_dividend
+            request.session['paytype'] = dividend_type[0].get('frequency')
+
+
+
             context = {
                 'tickersymbols': tickersymbols,
                 'api': api,
                 'ticker_company': ticker_company,
                 'ticker_dividend': ticker_dividend,
+                'div_type': dividend_type[0]
             }
-
             return render(request, 'users/ticker.html', context)
+
         except Exception as e:
             api = "Error.."
             context = {
                 'tickersymbols': tickersymbols,
                 'api': api,
                 'ticker_company': ticker_company,
-                'ticker_dividend': ticker_dividend
+                'ticker_dividend': ticker_dividend,
             }
             return render(request, 'users/ticker.html', context)
-    else: 
-        search = { 'tickers': "Enter a Ticker Symbol Above..."
+        
+    else:
+        search = { 'tickers': "Enter a Ticker Symbol Above...",
+                'tickersymbols': tickersymbols
         }
+
         return render(request, 'users/ticker.html', search)
+
+@login_required
+def addstock(request):
+    symbol = request.session['symbol']            
+    companyName = request.session['companyname'] 
+    sector = request.session['sector'] 
+    dividend = request.session['dividend'] 
+    payType = request.session['pay_type']
+    # UserStockPortfolio.objects.all().delete()
+    data = { 
+        'symbol': symbol, 
+        'company': companyName,
+        'sector': sector,
+        'paytype': payType,
+        'dividends': dividend }
+
+    stock_form = StockPortfolioForm(request.POST or None, initial=data)
+    
+    if stock_form.is_valid():
+        stock_form.save(commit=False)
+        my_p = Profile.objects.get(user=request.user)
+        stock_form.instance.user = my_p
+        stock_form.save()
+        messages.success(request, 'Stock added '\
+                                        'successfully')
+        return redirect ('ticker')
+
+
+    stockForm = {
+        'stockform': stock_form,
+        'symbol': symbol
+    }
+
+    return render(request, 'users/addstock.html', stockForm)
 
 @login_required
 def profile(request):
@@ -188,4 +278,3 @@ def profile(request):
     }
     
     return render(request, 'users/profile.html', context)
-

@@ -13,7 +13,7 @@
 
 
 <link rel="shortcut icon" type="image/ico" href="{% static 'home/img/favicon.ico' %}">
-<title>Dashboard | StockUp </title>
+<title>Dashboard | Sounivest </title>
 
 
 <!-- Custom fonts for this template-->
@@ -48,7 +48,7 @@
                 <!-- <i class="fas fa-laugh-wink"></i> -->
                 <i class="fas fa-cubes"></i>
               </div>
-              <div class="sidebar-brand-text mx-3">StockUp <sup>2.0</sup></div>
+              <div class="sidebar-brand-text mx-3">Sounivest <sup>2.0</sup></div>
             </a>
       
             <!-- Divider -->
@@ -125,14 +125,16 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-chart-area"></i>
+              <!-- <i class="fas fa-fw fa-chart-area"></i> -->
+              <i class="fa fa-lock"></i>
                 <span>Company Portfolio</span></a>
             </li>
       
             <!-- Nav Item - Tables -->
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-chart-area"></i>
+              <!-- <i class="fas fa-fw fa-chart-area"></i> -->
+              <i class="fa fa-lock"></i>
                 <span>Team Portfolio</span></a>
             </li>
       
@@ -413,7 +415,9 @@
 <script src="{% static 'home/vendor/chart.js/Chart.min.js' %}"></script>
 
 <!-- Page level custom scripts -->
+<script src="{% static 'home/js/demo/chart-area-demo.js' %}"></script>
 <script src="{% static 'home/js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'home/js/demo/chart-table-demo.js' %}"></script>
 <script src="{% static 'home/js/demo/search-ticker.js' %}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
