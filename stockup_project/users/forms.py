@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile, UserStockPortfolio
+from .models import Profile, UserStockPortfolio, UserStockProfitTracker
 
 
 class UserRegisterForm(UserCreationForm):
@@ -38,8 +38,16 @@ class StockPortfolioForm(forms.ModelForm):
     n_shares = forms.IntegerField(label='Shares')
     class Meta:
         model = UserStockPortfolio
-        fields = ('symbol','company','sector', 'dividends', 'price','n_shares')
+        fields = ('symbol','company','sector','pay_type', 'dividends', 'price','n_shares')
         # fields = ('n_shares', 'price')
+
+class StockGainForm(forms.ModelForm):
+    user = forms.CharField()
+    cash_gained =  forms.FloatField()
+    roi= forms.FloatField()
+    class Meta:
+        model = UserStockProfitTracker
+        fields = ('user','cash_gained', 'roi')
 
          
 

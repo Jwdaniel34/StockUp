@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'sslserver',
     'phone_field',
+    'django_q'
 ]
 
 ELASTICSEARCH_DSL = {
@@ -76,6 +77,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {  # Adding this section should work around the issue.
+                'staticfiles': 'django.templatetags.static',
+            },
         },
     },
 ]
@@ -161,3 +165,20 @@ EMAIL_HOST_USER = 'johnswerd@gmail.com'
 EMAIL_HOST_PASSWORD = 'CoolDaniel#03'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+Q_CLUSTER = {
+    'name': 'myproject',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'db': 0, }
+}

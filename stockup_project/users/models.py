@@ -132,10 +132,15 @@ class UserStockPortfolio(models.Model):
          return "UserProfile has No User instance"
 
 
+class UserStockProfitTracker(models.Model):
+    user = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    cash_gained =  models.FloatField(blank=True, null=True)
+    roi= models.FloatField(blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True, null = True)
 
-
-# class UserStockProfitTracker(models.Model):
-    # name = models.ForeignKey(Users, on_delete=SET_NULL)
-    # cash_amount =  models.FloatFiield(null=True) 
-    # date_created = models.DateTimeField(auto_now_add=True, null = True)
+    def __str__(self):
+     try:
+         return f'{str(self.user.user.username)}-Order: {str(self.id)}'
+     except:
+         return "UserProfile has No User instance"
 

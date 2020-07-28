@@ -1,16 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, StockPortfolioForm
+from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, StockPortfolioForm, StockGainForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import MlDividends, Profile, UserStockPortfolio 
+from .models import MlDividends, Profile, UserStockPortfolio, UserStockProfitTracker
 from django.db.models import Sum, Count
 from datetime import datetime, timedelta
 import json
 import requests
 from django.utils import timezone
+from django_q.tasks import async_task
 
 # Create your views here.
+
+
+
 
 # registration for new user
 def register(request):
@@ -27,6 +31,8 @@ def register(request):
 
     return render(request, 'users/register.html', {'form': form})
 
+
+# User edit profile
 @login_required
 def edit(request):
     if request.method == 'POST':
@@ -56,7 +62,7 @@ def edit(request):
     return render(request, 'users/edit.html', contextEdit)
 
 
-
+# User Dashboard
 @login_required
 def stockdashboard(request):
     Barlabels = []
@@ -76,12 +82,14 @@ def stockdashboard(request):
     sp = UserStockPortfolio.objects.filter(user__user__username=my_p)
 
 
+
     pl = sp.aggregate(Sum('price'))
     div = sp.values('dividends')
     payT = sp.values('pay_type')
     tot_div = []
     pO = []
-
+    
+    
     for pay, ty in zip(div,payT):
         pay = pay.get('dividends')
         ty = ty.get('pay_type')
@@ -112,6 +120,12 @@ def stockdashboard(request):
     d = sum(tot_div) # Dividends
     cashGained = (pO-pl)+d/pO
     roi = cashGained/pl * 1
+    informatoin = {
+        'cashGained':cashGained,
+        'roi': roi,
+    }
+
+
     queryset = sp.values('sector').annotate(sector_count=Count('sector'))
     for stocks in queryset:
         Barlabels.append(stocks['sector'])
@@ -133,13 +147,17 @@ def stockdashboard(request):
 
      #Timeseries Chart
     timeseries = MlDividends.objects.using('dividend')
-    timeseries_symbol = MlDividends.objects.filter(
-                                symbol= "A",).values('prevclose','load_date').using('dividend')
+    # timeseries_symbol = MlDividends.objects.filter(symbol='A').values('prevclose','load_date').using('dividend')
     ts_price = []
     ts_dates = []
+    # for tsstocks in timeseries_symbol:
+    #     ts_price.append(float(tsstocks['prevclose']))
+    #     ts_dates.append(tsstocks['load_date'].strftime("%Y-%m-%d"))
+    timeseries_symbol = UserStockProfitTracker.objects.values('cash_gained','date_created')
     for tsstocks in timeseries_symbol:
-        ts_price.append(float(tsstocks['prevclose']))
-        ts_dates.append(tsstocks['load_date'])
+        ts_price.append(float(tsstocks['cash_gained']))
+        ts_dates.append(tsstocks['date_created'].strftime("%Y-%m-%d"))
+
 
     tickersymbol = MlDividends.objects.order_by(
                                         "symbol").values('symbol', 'company').distinct().using('dividend')
@@ -156,8 +174,8 @@ def stockdashboard(request):
         'Barlabels': list(labelsColors.keys()),
         'colors': list(labelsColors.values()),
         'zippedLC': zippedLC,
-        'ts_price': ts_price,
-        'ts_dates': ts_dates,
+        'ts_price': ts_price[:2],
+        'ts_dates': ts_dates[:2],
         'tickersymbols': tickersymbols,
         'ann_div': d,
         'cash_gained': cashGained,
@@ -234,13 +252,14 @@ def addstock(request):
     companyName = request.session['companyname'] 
     sector = request.session['sector'] 
     dividend = request.session['dividend'] 
-    payType = request.session['pay_type']
+    payType = request.session['paytype']
     # UserStockPortfolio.objects.all().delete()
+    print(dividend,payType)
     data = { 
         'symbol': symbol, 
         'company': companyName,
         'sector': sector,
-        'paytype': payType,
+        'pay_type': payType,
         'dividends': dividend }
 
     stock_form = StockPortfolioForm(request.POST or None, initial=data)
@@ -265,6 +284,51 @@ def addstock(request):
 @login_required
 def profile(request):
 
+    my_p = Profile.objects.get(user=request.user)
+    sp = UserStockPortfolio.objects.filter(user__user__username=my_p)
+
+
+    pl = sp.aggregate(Sum('price'))
+    div = sp.values('dividends')
+    payT = sp.values('pay_type')
+    tot_div = []
+    pO = []
+
+    for pay, ty in zip(div,payT):
+        pay = pay.get('dividends')
+        ty = ty.get('pay_type')
+
+        if ty == 'Quarterly':
+            quart = 4 * pay
+            tot_div.append(quart)
+        elif ty =='Monthly':
+            month = 12 * pay
+            tot_div.append(month)
+        elif ty == 'Semi-Annual':
+            semi = 2 * pay
+            tot_div.append(semi)
+        else:
+            annual = 1 * pay
+            tot_div.append(annual)
+
+
+    for sym in sp.values('symbol'):
+        sym = sym.get('symbol').lower()
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+        price = json.loads(api_request.content)
+        price = price.get('latestPrice')
+        pO.append(int(price))
+
+    pl = pl.get('price__sum') # Initial Price
+    pO = sum(pO) # Current Price
+    d = sum(tot_div) # Dividends
+    cashGained = (pO-pl)+d/pO
+    roi = cashGained/pl * 1
+    informatoin = {
+        'cashGained':cashGained,
+        'roi': roi,
+    }
+
     tickersymbol = MlDividends.objects.order_by(
                                         "symbol").values('symbol', 'company').distinct().using('dividend')
     tickersymbols = []
@@ -275,6 +339,15 @@ def profile(request):
     
     context = {
         'tickersymbols': tickersymbols,
+        'cash_gained': cashGained,
     }
     
     return render(request, 'users/profile.html', context)
+
+
+    
+# now = datetime.now()
+# date= datetime(year= now.year, month= now.month, day= now.day, hour= 17,minute= 0)
+# cashUpdate(schedule= date,repeat=Task.DAILY, information=informatoin)
+    
+    
