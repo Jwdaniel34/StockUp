@@ -16,12 +16,15 @@ Including another URLconf
 
 from django.urls import path
 from users import views
+from .views import StockListView, StockDetailView
 from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('stockdashboard/', views.stockdashboard, name='stockdashboard'),
     path('ticker/', views.tickersearch, name='ticker'),
+    path('userportfolio/', StockListView.as_view(), name='userstockportfolio'),
+    path('detailedstock/<int:pk>/', StockDetailView.as_view(), name='stock-detail'),
     path('profile/', views.profile, name= 'profile'),
     path('addstock/', views.addstock, name= 'addstock'),
     path('register/', views.register, name= 'register'),

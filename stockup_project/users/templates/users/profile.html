@@ -32,6 +32,12 @@
                 background-image: linear-gradient(180deg, #1cc88a 10%, #b600ff 100%);
                 background-size: cover;
             }
+
+            ul.Labelclass {
+              column-count: 1;
+              list-style-type: none;
+              text-align: justify;
+            }
         </style>
 
         <!-- Page Wrapper -->
@@ -44,9 +50,9 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'profile' %}">
               <div class="sidebar-brand-icon rotate-n-15">
                 <!-- <i class="fas fa-laugh-wink"></i> -->
-                <i class="fas fa-cubes"></i>
+                <!-- <i class="fas fa-cubes"></i> -->
               </div>
-              <div class="sidebar-brand-text mx-3">Sounivest <sup>2.0</sup></div>
+              <div class="sidebar-brand-text mx-3">SparrowsInvest</div>
             </a>
       
             <!-- Divider -->
@@ -445,41 +451,45 @@
                 <!-- Content Row -->
       
                 <div class="row">
-      
-                  <!-- Area Chart -->
-                  <div class="col-xl-8 col-lg-7">
-                    <div class="card shadow mb-4">
-                      <!-- Card Header - Dropdown -->
-                      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Stocks Portfolio</h6>
-                        <div class="dropdown no-arrow">
-                          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                      <div class="card shadow mb-4">
+                        <!-- Card Header - Dropdown -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                          <h6 class="m-0 font-weight-bold text-primary">Porfolio Investment Gains</h6>
+                          <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                              <div class="dropdown-header">Dropdown Header:</div>
+                              <a class="dropdown-item" href="#">Action</a>
+                              <a class="dropdown-item" href="#">Another action</a>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Card Body -->
+                        <div class="card-body" style="height: 30.5rem;">
+                            <div class="row" style="padding-left: 12rem">
+                              <div class="col-sm-2">ROI: </br>{{roi|floatformat:2}}% </div>
+                              <div class="col-sm-3">Total Cash Gain: </br>${{cash_gained|floatformat:2}}  </div>
+                              <div class="col-sm-3">Yearly Dividend: </br>${{ann_div|floatformat:2}} </div>
+                            </div>
+                          <div class="chart-area" style="height:25rem">
+                            <canvas id="myPortfolio" width="200" height="200"></canvas>
                           </div>
                         </div>
                       </div>
-                      <!-- Card Body -->
-                      <div class="card-body">
-                        <div class="chart-area">
-                          <canvas id="myAreaChart"></canvas>
-                        </div>
-                      </div>
                     </div>
-                  </div>
       
                   <!-- Pie Chart -->
                   <div class="col-xl-4 col-lg-5">
                     <div class="card shadow mb-4">
                       <!-- Card Header - Dropdown -->
                       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Stocks Investment Overview</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Stocks Investment Sector Overview</h6>
                         <div class="dropdown no-arrow">
                           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -496,18 +506,14 @@
                       <!-- Card Body -->
                       <div class="card-body">
                         <div class="chart-pie pt-4 pb-3">
-                          <canvas id="myPieChart"></canvas>
+                          <canvas id="myDivChart"></canvas>
                         </div>
-                        <div class="mt-4 text-center small">
-                          <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Technology 
-                          </span>
-                          <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Industrial
-                          </span>
-                          <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Consumer Goods
-                          </span>
+                        <div class="mt-2 text-center small">
+                          <ul class= "Labelclass" id="labelClass">
+                        {% for d in Barlabels %}
+                              <li><i class="fas fa-circle" id="colorchange"></i><span class="sector"> {{d}}</span></li>
+                          {% endfor %}
+                          </ul>
                         </div>
                       </div>
                     </div>
@@ -742,6 +748,11 @@
         </div>
 
 {{ tickersymbols|json_script:"tickersymbols" }}
+{{ Bardata|json_script:"Bardata"}}
+{{ Barlabels|json_script:"Barlabels"}}
+{{ colors|json_script:"colors"}}
+{{ ts_price|json_script:"ts_price"}} 
+{{ ts_dates|json_script:"ts_dates"}}
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -762,6 +773,7 @@
     <script src="{% static 'home/js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'home/js/demo/chart-pie-demo.js' %}"></script>
     <script src="{% static 'home/js/demo/search-ticker.js' %}"></script>
+    <script src="{% static 'home/js/demo/chart-table-demo.js' %}"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

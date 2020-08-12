@@ -92,6 +92,7 @@ var myChart = new Chart(ctx, {
                     }]
             ,yAxes: [{
               ticks: {
+                stepSize: 10,
                 beginAtZero: false,
                 // Include a dollar sign in the ticks
                 callback: function(value, index, values) {

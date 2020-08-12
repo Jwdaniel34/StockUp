@@ -22,16 +22,19 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Porfolio Investment Gains</h6>
                   <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    <a href="{% url 'userstockportfolio' %}" role="button"aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-secondary"  style="
+                        width: 100%; background-color: #4e73df;">Stock Portfolio</button>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
+                      <!-- <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i> -->
+                    <!-- </a> -->
+                    <!-- <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink"> -->
+                      <!-- <div class="dropdown-header">Dropdown Header:</div>
                       <a class="dropdown-item" href="#">Action</a>
                       <a class="dropdown-item" href="#">Another action</a>
                       <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
+                      <a class="dropdown-item" href="#">Something else here</a> -->
+                    <!-- </div> -->
                   </div>
                 </div>
                 <!-- Card Body -->
@@ -88,12 +91,18 @@
             <div class= "col-xl-8 col-lg-7">
               <div class= "card shadow mb-4">
                   <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                      <div class="m-0 font-weight-bold text-primary">Stock Invesments (ML Recommendations)</div>
-                      <div class= "dropdown no-arrow">
+                      <h6 class="m-0 font-weight-bold text-primary">Stock Invesments (ML Recommendations)</h6>
+                      <div class="dropdown no-arrow">
+                          <a href="#" role="button"aria-haspopup="true" aria-expanded="false">
+                              <button type="button" class="btn btn-secondary"  style="
+                              width: 100%; background-color: #4e73df;">Recommendations</button>
+                          </a>
+                      </div>
+                    </div>
+                      <!-- <div class= "dropdown no-arrow">
                           <input class="search-bar" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for symbol..">
                           <div class= "btn-second"> <i class="fas fa-search fa-sm"></i></div>
-                        </div> 
-                    </div>
+                        </div> -->
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
@@ -117,10 +126,10 @@
                                   </tr>
                                   {% endfor %} 
                                   </table>
-                            </div>
+                            </div> 
                         </div>
-                </div> 
-            </div>
+                  </div>
+              </div>
               <!-- Pie Chart -->
               <div class="col-xl-4 col-lg-5">
                 <div class="card shadow mb-4">

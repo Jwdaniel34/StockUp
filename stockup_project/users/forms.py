@@ -38,7 +38,7 @@ class StockPortfolioForm(forms.ModelForm):
     n_shares = forms.IntegerField(label='Shares')
     class Meta:
         model = UserStockPortfolio
-        fields = ('symbol','company','sector','pay_type', 'dividends', 'price','n_shares')
+        fields = ('symbol','company','sector','broker','pay_type', 'dividends', 'price','n_shares')
         # fields = ('n_shares', 'price')
 
 class StockGainForm(forms.ModelForm):

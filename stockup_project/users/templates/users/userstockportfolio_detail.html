@@ -1,0 +1,26 @@
+{% extends "users/searchskeleton.html" %}
+{% load static %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class= "container" style="padding-top: 2rem;">
+        <div class="row">
+            <div class="col-lg-7">
+                <h2 style= "color:black;padding-bottom: 2rem;"> {{ object.company }} ({{object.symbol}})</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                    <!-- <h2> Sector: {{ object.company }}</h3> <button class= "btn ticker-tooltip" data-toggle="tooltip" data-placement="right" title="Sector" aria-describedby="tooltip"></button></br> -->
+                    <h5 style= "color:black"> Sector: {{object.sector }}   </h5><button class= "btn ticker-tooltip" data-toggle="tooltip" title="Current Close" aria-describedby="tooltip"></button> <br/>
+                    <h5 style= "color:black"> Broker:  {{object.broker}}  </h5> <button class= "btn ticker-tooltip" data-toggle="tooltip" title="Last Day Close Price" aria-describedby="tooltip"></button><br/>
+                    <h5 style= "color:rgb(121, 121, 121)"> Price Purchased: ${{ object.price|floatformat:2 }}</h5><button class= "btn ticker-tooltip" data-toggle="tooltip" title="Last Amount Paid" aria-describedby="tooltip"></button><br/>
+                    <h5 style= "color:rgb(121, 121, 121)"> Dividends: ${{ object.dividends|floatformat:2 }}  </h5><button class= "btn ticker-tooltip" data-toggle="tooltip" title=" Next Payment {{div_type.paymentDate}}" aria-describedby="tooltip"></button><br/>
+                    <h5 style= "color:rgb(121, 121, 121)"> Shares: {{ object.n_shares }}</h5><button class= "btn ticker-tooltip" data-toggle="tooltip" title=" Next Payment {{div_type.paymentDate}}" aria-describedby="tooltip"></button><br/>
+                    <h5 style= "color:rgb(121, 121, 121)"> Total Investment: ${{ object.tot_price|floatformat:2 }}</h5><button class= "btn ticker-tooltip" data-toggle="tooltip" title=" Next Payment {{div_type.paymentDate}}" aria-describedby="tooltip"></button><br/>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

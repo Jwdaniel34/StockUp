@@ -97,6 +97,13 @@ class UserStockPortfolio(models.Model):
     symbol = models.CharField(max_length=30,blank=True, null=True)
     company = models.CharField(max_length=150, blank= True, null= True)
     sector = models.CharField(max_length=30,blank=True, null=True)
+    brokers = (
+                ('Robinhood', 'Robinhood'),
+                ('E-trade','E-trade'),
+                ('Fidelity', 'Fidelity'),
+                ('TDAmeritrade', 'TDAmeritrade'),
+                )
+    broker = models.CharField(max_length=30, blank=True, null=True, choices=brokers)
     pay_type = models.CharField(max_length=30, blank= True, null=True)
     price = models.FloatField(blank=True, null=True)
     dividends = models.FloatField(blank= True, null=True)
@@ -144,3 +151,49 @@ class UserStockProfitTracker(models.Model):
      except:
          return "UserProfile has No User instance"
 
+
+class SoldStockPortfolio(models.Model):
+    user = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
+    symbol = models.CharField(max_length=30,blank=True, null=True)
+    company = models.CharField(max_length=150, blank= True, null= True)
+    sector = models.CharField(max_length=30,blank=True, null=True)
+    # brokers = (
+    #             ('Robinhood', 'Robinhood'),
+    #             ('E-trade','E-trade'),
+    #             ('Fidelity', 'Fidelity'),
+    #             ('TDAmeritrade', 'TDAmeritrade'),
+    #             )
+    broker = models.CharField(max_length=30, blank=True, null=True)
+    pay_type = models.CharField(max_length=30, blank= True, null=True)
+    price = models.FloatField(blank=True, null=True)
+    dividends = models.FloatField(blank= True, null=True)
+    n_shares = models.IntegerField(blank=True, null= True)
+    tot_price = models.FloatField(
+        default=0,  # This value will be overwritten during save()
+        editable=True,  # Hides this field in the admin interface.
+    )
+    date_created = models.DateTimeField(auto_now_add=True, null = True)
+
+    def save(self, *args, **kwargs):
+        # calculate sum before saving.
+        self.tot_price = self.calculate_sum()
+        super(UserStockPortfolio, self).save(*args, **kwargs)
+
+    def calculate_sum(self):
+        """ Calculate a numeric value for the model instance. """
+        try:
+            value_a = self.price
+            value_b = self.n_shares
+            return value_a * value_b
+        except:
+            # Value_a or value_b is not in the VALUES dictionary.
+            # Do something to handle this exception.
+            # Just returning the value 0 will avoid crashes, but could 
+            # also hide some underlying problem with your data.
+            return 0
+
+    def __str__(self):
+     try:
+         return f'{str(self.user.user.username)}-Order: {str(self.id)}'
+     except:
+         return "UserProfile has No User instance"

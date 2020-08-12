@@ -1,5 +1,5 @@
 {% load static %}
-{% load staticfiles %}
+<!-- {% load staticfiles %} -->
 <!DOCTYPE html>
 <html lang="en">
       
@@ -13,7 +13,7 @@
 
 
 <link rel="shortcut icon" type="image/ico" href="{% static 'home/img/favicon.ico' %}">
-<title>Dashboard | Sounivest </title>
+<title>Dashboard | StockUp </title>
 
 
 <!-- Custom fonts for this template-->
@@ -34,6 +34,13 @@
                 background-color: #1c3786;
                 background-size: cover;
             }
+
+            ul.Labelclass {
+              column-count: 1;
+              list-style-type: none;
+              text-align: justify;
+          }
+
         </style>
 
         <!-- Page Wrapper -->
@@ -157,20 +164,20 @@
                   <i class="fa fa-bars"></i>
                 </button>
       
-                <!-- Topbar Search -->
-                <form action= "{% url 'ticker' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
-                    method="POST">
-                    {% csrf_token %}
-                  <div class="input-group ui-widget">
-                    <input id="tickerssymbol" type="search" class="form-control  bg-light border-0 small" 
-                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="ticker">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="submit">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+                 <!-- Topbar Search -->
+                 <form action= "{% url 'ticker' %}" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+                 method="POST">
+                 {% csrf_token %}
+               <div class="input-group ui-widget">
+                 <input id="tickerssymbol" type="search" class="form-control  bg-light border-0 small" 
+                 placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" name="ticker">
+                 <div class="input-group-append">
+                   <button class="btn btn-primary" type="submit">
+                     <i class="fas fa-search fa-sm"></i>
+                   </button>
+                 </div>
+               </div>
+             </form>
       
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
@@ -339,19 +346,124 @@
               </nav>
               <!-- End of Topbar -->
        <!-- Begin Page Content -->
-       {% if messages %}
-       <ul class="messages">
-         {% for message in messages %}
-          <li class="alert alert-{{message.tags}}">
-            {{message|safe}}
-            <a href="#" class="close">x</a>
-          </li>
-          {% endfor %}
-       </ul>
-       {% endif %}
        <div class="container-fluid">
            <!-- Content Row -->
-        {% block content %}{% endblock %}
+            <div class="row">
+                {{math}}
+              <!-- Earnings (Monthly) Card Example -->
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-primary shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Amount Saved</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- Earnings (Monthly) Card Example -->
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1"> Investment Gains</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">+${{cash_gained|floatformat:2}}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- Earnings (Monthly) Card Example -->
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Personal Saving Goal</div>
+                        <div class="row no-gutters align-items-center">
+                          <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                          </div>
+                          <div class="col">
+                            <div class="progress progress-sm mr-2">
+                              <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- Pending Requests Card Example -->
+              <!-- <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Team Saving Goal</div>
+                        <div class="row no-gutters align-items-center">
+                          <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">25%</div>
+                          </div>
+                          <div class="col">
+                            <div class="progress progress-sm mr-2">
+                              <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+        <!-- {% block content %} -->
+                <table class="tableuserportfolio uspth usptb usptr">
+                    <tr class="headerportfolio">
+                        <th>Symbol</th>
+                        <th>Company</th>
+                        <th>Sector</th>
+                        <th>Broker</th>
+                        <th>Purchased</th>
+                        <th>Dividend</th>
+                        <th>Shares</th>
+                        <th>Total Investment</th>
+                        <th>Current/Sold</th>
+                    </tr>
+                    {% for i in portfolio %}
+                    <tr > 
+                        <td><a href="{%url 'stock-detail' i.id %}" style="color: inherit">{{ i.symbol }}</a></td>
+                        <td>{{ i.company }}</td>
+                        <td> {{ i.sector }}</td>
+                        <td> {{ i.broker }}</td>
+                        <td> ${{ i.price|floatformat:2 }}</td>
+                        <td> {{ i.dividends|floatformat:2 }}</td>
+                        <td> {{ i.n_shares }}</td>
+                        <td> ${{ i.tot_price|floatformat:2 }}</td>
+                        <td> Current </td>
+                    </tr>
+                    {% endfor %} 
+                </table>
+                <!-- {% endblock %} -->
         </div>
     </div>
     <!-- End of Main Content -->
@@ -397,6 +509,11 @@
 </div>
 
 {{ tickersymbols|json_script:"tickersymbols" }}
+{{ Bardata|json_script:"Bardata"}}
+{{ Barlabels|json_script:"Barlabels"}}
+{{ colors|json_script:"colors"}}
+{{ ts_price|json_script:"ts_price"}} 
+{{ ts_dates|json_script:"ts_dates"}}
 
 <!-- Bootstrap core JavaScript-->
 <script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
@@ -423,15 +540,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
-
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!-- <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-<!-- bootstrap.bundle.min.js / bootstrap.bundle.js -->
-
-
 </body>
 
-
 </html>
+
+

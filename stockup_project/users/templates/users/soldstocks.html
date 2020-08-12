@@ -1,0 +1,31 @@
+{% extends "users/searchskeleton.html" %}
+{% load static %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<style>
+    .content-section {
+        padding-right: 26rem;
+        border-radius: 5px;
+        width: 100%;
+      }
+    .form-group {
+        width:73%
+    }
+    </style>
+    
+    <div class="container">
+        <div class="content-section pt-3">
+            <h1> Add {{symbol}} To Your Portfolio</h1>
+            <hr>
+            <!-- <p> </p> -->
+            <form class= "form-group" method="POST" >
+                {{  sellstockform |crispy }}
+                {% csrf_token %}
+                <p><button class="btn btn-primary" type="submit">Add</button></p>
+                <a href="{% url 'ticker' %}"><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button></a>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

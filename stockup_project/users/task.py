@@ -6,10 +6,11 @@ import requests
 from django.db.models import Sum, Count
 from datetime import datetime, timedelta
 import json
+
 # Schedule.objects.create(func='users.task.cashUpdate',
 #                         hook='hooks.print_result',
 #                         schedule_type=Schedule.CRON,
-#                         cron = '0 17 * * 1-5')
+#                         cron = '0 09 * * 1-5')
 
 
 def cashUpdate():
