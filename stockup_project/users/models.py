@@ -105,6 +105,7 @@ class UserStockPortfolio(models.Model):
                 )
     broker = models.CharField(max_length=30, blank=True, null=True, choices=brokers)
     pay_type = models.CharField(max_length=30, blank= True, null=True)
+    purchased = models.CharField(max_length=30, blank=True, null=True)
     price = models.FloatField(blank=True, null=True)
     dividends = models.FloatField(blank= True, null=True)
     n_shares = models.IntegerField(blank=True, null= True)
@@ -132,6 +133,7 @@ class UserStockPortfolio(models.Model):
             # also hide some underlying problem with your data.
             return 0
 
+
     def __str__(self):
      try:
          return f'{str(self.user.user.username)}-Order: {str(self.id)}'
@@ -157,12 +159,7 @@ class SoldStockPortfolio(models.Model):
     symbol = models.CharField(max_length=30,blank=True, null=True)
     company = models.CharField(max_length=150, blank= True, null= True)
     sector = models.CharField(max_length=30,blank=True, null=True)
-    # brokers = (
-    #             ('Robinhood', 'Robinhood'),
-    #             ('E-trade','E-trade'),
-    #             ('Fidelity', 'Fidelity'),
-    #             ('TDAmeritrade', 'TDAmeritrade'),
-    #             )
+    stock_id = models.IntegerField(blank=True, null=True)
     broker = models.CharField(max_length=30, blank=True, null=True)
     pay_type = models.CharField(max_length=30, blank= True, null=True)
     price = models.FloatField(blank=True, null=True)
@@ -174,10 +171,13 @@ class SoldStockPortfolio(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True, null = True)
 
+    def get_absolute_url(self):
+        return reverse('stock-detail', kwargs={'pk': self.pk})
+
     def save(self, *args, **kwargs):
         # calculate sum before saving.
         self.tot_price = self.calculate_sum()
-        super(UserStockPortfolio, self).save(*args, **kwargs)
+        super(SoldStockPortfolio, self).save(*args, **kwargs)
 
     def calculate_sum(self):
         """ Calculate a numeric value for the model instance. """

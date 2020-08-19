@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'django_extensions',
     'sslserver',
     'phone_field',
-    'django_q'
+    'django_q',
+    'mobile_frontend',
+    'rest_framework'
 ]
 
 ELASTICSEARCH_DSL = {

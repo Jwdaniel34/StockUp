@@ -459,7 +459,7 @@
                         <td> {{ i.dividends|floatformat:2 }}</td>
                         <td> {{ i.n_shares }}</td>
                         <td> ${{ i.tot_price|floatformat:2 }}</td>
-                        <td> Current </td>
+                        <td> {{ i.purchased }} </td>
                     </tr>
                     {% endfor %} 
                 </table>

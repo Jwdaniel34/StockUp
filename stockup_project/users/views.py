@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .forms import UserRegisterForm, UserEditForm, ProfileEditForm, StockPortfolioForm, StockGainForm
+from .forms import (UserRegisterForm, UserEditForm,
+                    ProfileEditForm, StockPortfolioForm,
+                    StockGainForm, SoldStockForm)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView
-from .models import MlDividends, Profile, UserStockPortfolio, UserStockProfitTracker, SoldStockPortfolio
+from .models import (MlDividends, Profile, UserStockPortfolio, 
+                    UserStockProfitTracker, SoldStockPortfolio)
 from django.db.models import Sum, Count
 from datetime import datetime, timedelta
 import json
@@ -60,7 +63,6 @@ def edit(request):
     } 
     return render(request, 'users/edit.html', contextEdit)
 
-
 # User Dashboard
 @login_required
 def stockdashboard(request):
@@ -82,46 +84,57 @@ def stockdashboard(request):
 
 
 
-    pl = sp.aggregate(Sum('price'))
+    pl = sp.aggregate(Sum('tot_price'))
     div = sp.values('dividends')
     payT = sp.values('pay_type')
     shares = sp.values('n_shares')
     tot_div = []
     pO = []
-    
-    
-    for pay, ty, share, sym in zip(div,payT, shares, sp.values('symbol')):
+
+    for pay, ty, current, share, sym in zip(div,payT, sp.values('purchased'),shares, sp.values('symbol')):
         pay = pay.get('dividends')
+        current = current.get('purchased')
         ty = ty.get('pay_type')
         share = share.get('n_shares')
         sym = sym.get('symbol')
 
-        if ty == 'Quarterly':
+        if ty == 'Quarterly' and current == 'Current':
             quart = 4 * pay
             quart = quart * share
             tot_div.append(quart)
-        elif ty =='Monthly':
+        elif ty =='Monthly' and current == 'Current':
             month = 12 * pay
             month = month * share
             tot_div.append(month)
-        elif ty == 'Semi-Annual':
+        elif ty == 'Semi-Annual' and current == 'Current':
             semi = 2 * pay
             semi = semi * share
             tot_div.append(semi)
-        else:
+        elif ty == 'Annual' and current == 'Current':
             annual = 1 * pay
             annual = annual * share 
             tot_div.append(annual)
 
 
-    for sym in sp.values('symbol'):
+    for sym, share ,current,cp in zip(sp.values('symbol'), shares, sp.values('purchased'), sp.values('id')):
+        current = current.get('purchased')
         sym = sym.get('symbol').lower()
-        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
-        price = json.loads(api_request.content)
-        price = price.get('latestPrice')
-        pO.append(int(price))
+        cp = cp.get('id')
+        share = share.get('n_shares')
+        if current == 'Current': 
+            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+            price = json.loads(api_request.content)
+            price = price.get('latestPrice')
+            pO.append(float(price) * share )
+        else:
+            sold_stock = SoldStockPortfolio.objects.get(stock_id=cp)
+            sold_price = SoldStockPortfolio.objects.filter(stock_id=cp).values()
+            sold_price = [ SP['tot_price'] for SP in list(sold_price.values('tot_price'))]
+            sold_price = sold_price[0]
+            pO.append(sold_price)
 
-    pl = pl.get('price__sum') # Initial Price
+
+    pl = pl.get('tot_price__sum') # Initial Price
     pO = sum(pO) # Current Price
     d = sum(tot_div) # Dividends
     cashGained = (pO-pl)+d/pO
@@ -292,47 +305,57 @@ def profile(request):
     sp = UserStockPortfolio.objects.filter(user__user__username=my_p)
 
 
-
-    pl = sp.aggregate(Sum('price'))
+    pl = sp.aggregate(Sum('tot_price'))
     div = sp.values('dividends')
     payT = sp.values('pay_type')
     shares = sp.values('n_shares')
     tot_div = []
     pO = []
     
-    for pay, ty, share, sym in zip(div,payT, shares, sp.values('symbol')):
+    for pay, ty, current, share, sym in zip(div,payT, sp.values('purchased'),shares, sp.values('symbol')):
         pay = pay.get('dividends')
+        current = current.get('purchased')
         ty = ty.get('pay_type')
         share = share.get('n_shares')
         sym = sym.get('symbol')
 
-        if ty == 'Quarterly':
+        if ty == 'Quarterly' and current == 'Current':
             quart = 4 * pay
             quart = quart * share
             tot_div.append(quart)
-        elif ty =='Monthly':
+        elif ty =='Monthly' and current == 'Current':
             month = 12 * pay
             month = month * share
             tot_div.append(month)
-        elif ty == 'Semi-Annual':
+        elif ty == 'Semi-Annual' and current == 'Current':
             semi = 2 * pay
             semi = semi * share
             tot_div.append(semi)
-        else:
+        elif ty == 'Annual' and current == 'Current':
             annual = 1 * pay
             annual = annual * share 
             tot_div.append(annual)
 
 
-
-    for sym in sp.values('symbol'):
+    for sym, share ,current,cp in zip(sp.values('symbol'), shares, sp.values('purchased'), sp.values('id')):
+        current = current.get('purchased')
         sym = sym.get('symbol').lower()
-        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
-        price = json.loads(api_request.content)
-        price = price.get('latestPrice')
-        pO.append(int(price))
+        cp = cp.get('id')
+        share = share.get('n_shares')
+        if current == 'Current': 
+            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+            price = json.loads(api_request.content)
+            price = price.get('latestPrice')
+            pO.append(float(price) * share )
+        else:
+            sold_stock = SoldStockPortfolio.objects.get(stock_id=cp)
+            sold_price = SoldStockPortfolio.objects.filter(stock_id=cp).values()
+            sold_price = [ SP['tot_price'] for SP in list(sold_price.values('tot_price'))]
+            sold_price = sold_price[0]
+            pO.append(sold_price)
 
-    pl = pl.get('price__sum') # Initial Price
+
+    pl = pl.get('tot_price__sum') # Initial Price
     pO = sum(pO) # Current Price
     d = sum(tot_div) # Dividends
     cashGained = (pO-pl)+d/pO
@@ -415,51 +438,90 @@ class StockListView(LoginRequiredMixin, ListView):
 
 
 
-class StockDetailView(DetailView):
+class StockDetailView(LoginRequiredMixin,DetailView):
     model = UserStockPortfolio
 
     def get_context_data(self, **kwargs):
         context = super(StockDetailView, self).get_context_data(**kwargs)
-        context['symbol'] = self.request.session.get(self.object.symbol)
-        context['company'] = self.request.session.get(self.object.company)
-        context['sector'] = self.request.session.get(self.object.sector)
-        context['paytype'] = self.request.session.get(self.object.pay_type)
-        context['dividend'] = self.request.session.get(self.object.dividends)
-        context['shares'] = self.request.session.get(self.object.n_shares)
-        context['total_price'] = self.request.session.get(self.object.tot_price)
+        self.request.session['company'] = self.object.company
+        self.request.session['symbol'] = self.object.symbol
+        self.request.session['sectors'] = self.object.sector
+        self.request.session['brokers'] = self.object.broker
+        self.request.session['n_shares'] = self.object.n_shares
+        self.request.session['dividends'] = self.object.dividends
+        self.request.session['pay_type'] = self.object.pay_type
+        self.request.session['tot_price'] = self.object.tot_price
+        self.request.session['id'] = self.object.pk
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{self.object.symbol}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+        price = json.loads(api_request.content)
+        context['lastprice'] = price.get('latestPrice')
+        try:
+            sold_stock = SoldStockPortfolio.objects.get(stock_id=self.object.pk)
+            sold_price = SoldStockPortfolio.objects.filter(stock_id=self.object.pk).values()
+            sold_date = [ SP['date_created'] for SP in list(sold_price.values('date_created'))]
+            sold_price = [ SP['tot_price'] for SP in list(sold_price.values('tot_price'))]
+            sold_price = sold_price[0]
+            sold_date = sold_date[0].strftime("%m/%d/%Y")
+            context['sold'] = sold_stock
+            context['dates'] = sold_date
+            context['gain'] = sold_price - self.object.tot_price
+        except SoldStockPortfolio.DoesNotExist:
+            None
         return context
 
 @login_required
 def soldstock(request):
+    company = request.session['company']
     symbol = request.session['symbol']            
-    companyName = request.session['company'] 
-    sector = request.session['sector'] 
-    dividend = request.session['dividend'] 
-    payType = request.session['paytype']
-    # UserStockPortfolio.objects.all().delete()
-    print(dividend,payType)
-    data = { 
-        'symbol': symbol, 
-        'company': companyName,
-        'sector': sector,
-        'pay_type': payType,
-        'dividends': dividend }
+    sector = request.session['sectors'] 
+    broker = request.session['brokers']
+    dividend = request.session['dividends']
+    shares = request.session['n_shares']
+    payType = request.session['pay_type']
+    prev_tot = request.session['tot_price']
+    stock_id = request.session['id']
 
-    stock_form = StockPortfolioForm(request.POST or None, initial=data)
+    api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{symbol}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+    price = json.loads(api_request.content)
+    price = price.get('latestPrice')
+    total_price = price * shares
+    gain = total_price - prev_tot
+
+    data = { 
+        'stock_id': stock_id,
+        'symbol': symbol, 
+        'company': company,
+        'sector': sector,
+        'price' : price,
+        'broker': broker,
+        'n_shares': shares,
+        'pay_type': payType.title(),
+        'dividends': dividend,
+        'tot_price': total_price,
+        }
+
+    current_stock = UserStockPortfolio.objects.get(pk = stock_id)
+    stock_form = SoldStockForm(request.POST or None, initial=data)
     
     if stock_form.is_valid():
         stock_form.save(commit=False)
         my_p = Profile.objects.get(user=request.user)
         stock_form.instance.user = my_p
+        current_stock.purchased = 'Sold'
         stock_form.save()
-        messages.success(request, 'Stock added '\
+        current_stock.save()
+        messages.success(request, 'Stock Sold '\
                                         'successfully')
-        return redirect ('ticker')
+        return redirect ('stock-detail', pk = stock_id)
 
 
     stockForm = {
-        'stockform': stock_form,
-        'symbol': symbol
+        'sellstockform': stock_form,
+        'symbol': symbol,
+        'company': company,
+        'gain': gain,
+        'dividend': dividend,
+        'id': stock_id
     }
 
-    return render(request, 'users/addstock.html', stockForm)
+    return render(request, 'users/soldstocks.html', stockForm)

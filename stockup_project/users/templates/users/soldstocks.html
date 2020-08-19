@@ -16,16 +16,34 @@
     </style>
     
     <div class="container">
-        <div class="content-section pt-3">
-            <h1> Add {{symbol}} To Your Portfolio</h1>
-            <hr>
-            <!-- <p> </p> -->
-            <form class= "form-group" method="POST" >
-                {{  sellstockform |crispy }}
-                {% csrf_token %}
-                <p><button class="btn btn-primary" type="submit">Add</button></p>
-                <a href="{% url 'ticker' %}"><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button></a>
-            </form>
+            <div class="content-section pt-3">
+                <h1> Sell {{symbol}} To Your Portfolio</h1>
+                <hr>
+                <!-- <p> </p> -->
+                <!-- <div class="row"> -->
+                    <form class= "row form-group" style="width: 132%" method="POST" >
+                        <div class= "col">
+                            {% csrf_token %}
+                            {{  sellstockform |crispy }}
+                        </div>
+                        <div class="col" style="padding-left: 0rem"> 
+                        <p style= "color: black"> Hello, {{user.first_name}} you are selling:
+                                <br><span style= "font-weight: bold;" >{{ company }}</span>
+                                <br> Your total return will be:
+                                <br> <span style= "font-weight: bold;" >{{ gain|floatformat:2  }} </span>
+                                <br> You will no longer receive dividends:
+                                <br> <span style= "font-weight: bold;" >{{ dividend|floatformat:2 }}</span>
+                            </p>
+                            <button class="btn btn-primary" style="margin-top: 1rem; width: 6rem;" 
+                            type="submit">Sell</button>
+                            <a href="{% url 'stock-detail' id %}"><button class="btn btn-danger" style="
+                                margin-top: 1rem;
+                                margin-left: 1rem;
+                                width: 6rem;
+                            " type="button" data-dismiss="modal">Cancel</button></a>
+                        </div>
+                    <!-- </div> -->
+                </form>
+            </div>  
         </div>
-    </div>
 {% endblock content %}

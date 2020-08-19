@@ -27,6 +27,7 @@ urlpatterns = [
     path('detailedstock/<int:pk>/', StockDetailView.as_view(), name='stock-detail'),
     path('profile/', views.profile, name= 'profile'),
     path('addstock/', views.addstock, name= 'addstock'),
+    path('soldstock/', views.soldstock, name='soldstock'),
     path('register/', views.register, name= 'register'),
     path('edit/', views.edit, name='edit'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name= 'login'),
