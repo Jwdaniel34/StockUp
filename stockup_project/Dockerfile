@@ -49,4 +49,4 @@ CMD gunicorn stockup_project.wsgi:application --bind 0.0.0.0:$PORT
 # docker run -it -d -p 8888:8888 sparrows-invest (background)
 # docker ps > docker stop image
 # docker image rm (filename) --force
-# gunicorn stockup_project.wsgi:application --bind 0.0.0.0:800
+# gunicorn stockup_project.wsgi:application --bind 0.0.0.0:8000

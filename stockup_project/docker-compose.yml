@@ -15,19 +15,19 @@ services:
             - mysql-db
     
     postgres-db:
-        image: postgres:12.0-alpine
+        image: postgres:latest
         volumes:
             - postgres_data:/var/lib/postgresql/data/
         environment:
-            - NAMEDB_POST=sparrowsuserdb
-            - USER_POST=postgres
-            - PASSWORD_POST=CoolIron#03
+            - NAMEDB_POST
+            - USER_POST
+            - PASSWORD_POST
     
     mysql-db:
         image: mysql:latest
         volumes:
             - mysql_data:/var/lib/mysql/data
         environment:
-            - NAMEDB_MYSQL = dividends
-            - USER_MYSQL = root     
-            - PASSWORD_MYSQL = CoolMan03
+            - NAMEDB_MYSQL
+            - USER_MYSQL    
+            - PASSWORD_MYSQL
