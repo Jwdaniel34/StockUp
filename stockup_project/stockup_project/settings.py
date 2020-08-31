@@ -20,12 +20,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 's+evvwe@nrr_wl5-^4%@z$@v_qu=2vir^phnqw7mj7wylmh9x='
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
+
+# 's+evvwe@nrr_wl5-^4%@z$@v_qu=2vir^phnqw7mj7wylmh9x='
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = bool(int(os.environ.get('DEBUG', default= 1)))
 
-ALLOWED_HOSTS = ['stockup.com', 'localhost','127.0.0.1']
+try:
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split()
+except:
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+ALLOWED_HOSTS_ENV = os.environ.get('DJANGO_ALLOWED_HOSTS')
+
+# if ALLOWED_HOSTS_ENV:
+#     ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
 
 # Application definition
@@ -45,8 +56,6 @@ INSTALLED_APPS = [
     'sslserver',
     'phone_field',
     'django_q',
-    'mobile_frontend',
-    'rest_framework'
 ]
 
 ELASTICSEARCH_DSL = {
@@ -93,17 +102,24 @@ WSGI_APPLICATION = 'stockup_project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('NAMEDB_POST'),
+        'USER': os.environ.get('USER_POST'),
+        'PASSWORD': os.environ.get('PASSWORD_POST'),
+        'HOST': os.environ.get('HOST_POST'),
+        'PORT': os.environ.get('PORT_POST'),
     },
     'dividend': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dividends',
-        'USER': 'root',
-        'PASSWORD': 'CoolMan03',
-        'HOST': '34.73.80.146',
-        'PORT': '3306',
+        'NAME': os.environ.get('NAMEDB_MYSQL'),
+        'USER': os.environ.get('USER_MYSQL'),
+        'PASSWORD': os.environ.get('PASSWORD_MYSQL'),
+        'HOST': os.environ.get('HOST_MYSQL'),
+        'PORT': os.environ.get('PORT_MYSQL'),
     }
 }
 
@@ -152,7 +168,6 @@ MEDIA_URL ='/img/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'home/static/home/img')
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, 'static')
 )
@@ -163,8 +178,8 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'login'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'johnswerd@gmail.com'
-EMAIL_HOST_PASSWORD = 'CoolDaniel#03'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 

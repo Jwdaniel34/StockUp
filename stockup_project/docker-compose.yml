@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+    web:
+        build: .
+        command: python manage.py runserver 0.0.0.0:8888
+        volumes:
+            - .stockup_project/:/usr/src/stockup_porject
+        ports:
+            - 8888:8888
+        env_file:
+            - .env
+        depends_on:
+            - postgres-db
+            - mysql-db
+    
+    postgres-db:
+        image: postgres:12.0-alpine
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        environment:
+            - NAMEDB_POST=sparrowsuserdb
+            - USER_POST=postgres
+            - PASSWORD_POST=CoolIron#03
+    
+    mysql-db:
+        image: mysql:latest
+        volumes:
+            - mysql_data:/var/lib/mysql/data
+        environment:
+            - NAMEDB_MYSQL = dividends
+            - USER_MYSQL = root     
+            - PASSWORD_MYSQL = CoolMan03

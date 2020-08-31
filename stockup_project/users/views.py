@@ -15,6 +15,9 @@ import json
 import requests
 from django.utils import timezone
 from django_q.tasks import async_task
+import os 
+
+iex = os.environ.get('IEX_KEY')
 
 # Create your views here.
 
@@ -122,7 +125,7 @@ def stockdashboard(request):
         cp = cp.get('id')
         share = share.get('n_shares')
         if current == 'Current': 
-            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token={iex}")
             price = json.loads(api_request.content)
             price = price.get('latestPrice')
             pO.append(float(price) * share )
@@ -217,10 +220,10 @@ def tickersearch(request):
         ticker = request.POST.get('ticker')
         ticker = ticker.split("-")
         ticker = ticker[0].replace(" ","")
-        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
-        api_company = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/company?token=pk_7b4f56cf15be4f548126330ab143502c")
-        api_dividend = requests.get(f"https://cloud.iexapis.com/stable/data-points/{ticker.lower()}/LAST-DIVIDEND-AMOUNT?token=pk_7b4f56cf15be4f548126330ab143502c")
-        api_divType= requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/dividends/ytd?token=pk_7b4f56cf15be4f548126330ab143502c")
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/quote?token={iex}")
+        api_company = requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/company?token={iex}")
+        api_dividend = requests.get(f"https://cloud.iexapis.com/stable/data-points/{ticker.lower()}/LAST-DIVIDEND-AMOUNT?token={iex}")
+        api_divType= requests.get(f"https://cloud.iexapis.com/stable/stock/{ticker.lower()}/dividends/ytd?token={iex}")
 
 
         try:
@@ -343,7 +346,7 @@ def profile(request):
         cp = cp.get('id')
         share = share.get('n_shares')
         if current == 'Current': 
-            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+            api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{sym}/quote?token={iex}")
             price = json.loads(api_request.content)
             price = price.get('latestPrice')
             pO.append(float(price) * share )
@@ -452,7 +455,7 @@ class StockDetailView(LoginRequiredMixin,DetailView):
         self.request.session['pay_type'] = self.object.pay_type
         self.request.session['tot_price'] = self.object.tot_price
         self.request.session['id'] = self.object.pk
-        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{self.object.symbol}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+        api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{self.object.symbol}/quote?token={iex}")
         price = json.loads(api_request.content)
         context['lastprice'] = price.get('latestPrice')
         try:
@@ -481,7 +484,7 @@ def soldstock(request):
     prev_tot = request.session['tot_price']
     stock_id = request.session['id']
 
-    api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{symbol}/quote?token=pk_7b4f56cf15be4f548126330ab143502c")
+    api_request = requests.get(f"https://cloud.iexapis.com/stable/stock/{symbol}/quote?token={iex}")
     price = json.loads(api_request.content)
     price = price.get('latestPrice')
     total_price = price * shares
