@@ -132,4 +132,4 @@ dmypy.json
 .env
 
 #credentials
-.bash_profile
+/.bash_profile
