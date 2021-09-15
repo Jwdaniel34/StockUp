@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
     web:
-        build: .
+        build: 
+            context: .
+            dockerfile: stockup_project/Dockerfile
         command: python manage.py runserver 0.0.0.0:8888
         volumes:
             - .stockup_project/:/usr/src/stockup_porject
@@ -31,3 +33,8 @@ services:
             - NAMEDB_MYSQL
             - USER_MYSQL    
             - PASSWORD_MYSQL
+
+    
+volumes: 
+    postgres_data:
+    mysql_data:

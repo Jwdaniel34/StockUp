@@ -29,8 +29,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* 
 
+
+RUN  apt-get update && apt-get install -yyq netcat
 
 # install environment dependencies
 RUN pip3 install --upgrade pip 
@@ -38,6 +40,13 @@ RUN pip3 install pipenv
 
 # Install project dependencies
 RUN pipenv install --skip-lock --system --dev
+
+COPY entrypoint.sh .
+
+RUN chmod 755 entrypoint.sh
+
+ENTRYPOINT ["bash","entrypoint.sh"]
+
 
 EXPOSE 8888
 CMD gunicorn stockup_project.wsgi:application --bind 0.0.0.0:$PORT
@@ -50,3 +59,12 @@ CMD gunicorn stockup_project.wsgi:application --bind 0.0.0.0:$PORT
 # docker ps > docker stop image
 # docker image rm (filename) --force
 # gunicorn stockup_project.wsgi:application --bind 0.0.0.0:8000
+# docker rmi $(docker images -f “dangling=true” -q) - remove
+
+# docker-compose down -v
+# docker-compose -f docker-compose.yml up -d --build -p sparrows-invest-dev
+
+
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["entrypoint.sh"]

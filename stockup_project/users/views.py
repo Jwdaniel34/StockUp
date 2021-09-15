@@ -381,6 +381,8 @@ def profile(request):
                       'rgba(218, 71, 145, 0.74)', # Financial
                       'rgba(255, 99, 132, 0.2)', # Healthcare
                   ]
+
+
     labelsColors = dict(zip(Barlabels, colors))
     zippedLC = [(Barlabels, colors)]
 

@@ -1,0 +1,155 @@
+###########
+# BUILDER #
+###########
+# Base Image
+FROM python:3.8.3-alpine as builder
+
+WORKDIR /usr/src/app
+
+# set default environment variables
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive 
+
+# set project environment variables
+# grab these via Python's os.environ
+# these are 100% optional here
+# ENV PORT=8000
+
+# Install system dependencies
+RUN apk update \ apk add postgresql-dev gcc python3-dev musl-dev \
+    tzdata \
+    python3 \
+    py3-setuptools \
+    git \
+    netcat \
+    py3-cryptography \
+    mariadb-connector-c-dev \
+    py-mysqldb \
+    py3-pillow \
+    py-yaml \
+    py3-cffi \
+    py3-parsing 
+
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
+     && pip install cython 
+
+# install environment dependencies
+RUN pip install --upgrade pip
+RUN pip install pipenv
+RUN pip install flake8
+COPY . .
+# RUN flake8 --ignore=E501,F402 .
+# RUN pip3 install --upgrade pip 
+# RUN pip3 install pipenv
+
+
+COPY ./requirement.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirement.txt
+
+
+# COPY Pipfile Pipfile
+# COPY Pipfile.lock Pipfile.lock
+
+# # Install project dependencies
+# RUN pipenv install --system --dev
+
+
+#########
+# FINAL #
+#########
+
+FROM python:3.8.3-alpine 
+
+RUN mkdir -p /home/app
+
+RUN addgroup -S app && adduser -S app -G app
+
+# create and set working directory
+ENV HOME=/home/app
+ENV APP_HOME=/home/app/web
+# RUN mkdir $APP_HOME/staticfiles
+# RUN mkdir $APP_HOME/mediafiles
+RUN mkdir $APP_HOME
+WORKDIR $APP_HOME
+
+
+# # Install system dependencies
+RUN apk update \ apk add postgresql-dev gcc python3-dev musl-dev \
+    tzdata \
+    python3 \
+    py3-setuptools \
+    git \
+    netcat \
+    py3-cryptography \
+    mariadb-connector-c-dev \
+    py-mysqldb \
+    py3-pillow \
+    py-yaml \
+    py3-cffi \
+    py3-parsing 
+
+RUN apk add --no-cache --virtual .build-deps gcc musl-dev \
+     && pip install cython 
+
+
+# install environment dependencies
+# RUN pip install --upgrade pip
+# RUN pip3 install --upgrade pip 
+# RUN pip3 install pipenv
+# RUN pip install pipenv
+
+RUN apk update && apk add libpq
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirement.txt .
+RUN pip install --no-cache-dir /wheels/*
+
+# COPY Pipfile Pipfile
+# COPY Pipfile.lock Pipfile.lock
+
+# # Install project dependencies
+# RUN pipenv install --system --dev
+
+COPY ./entrypoint.prod.sh $APP_HOME
+
+COPY . $APP_HOME
+
+RUN chown -R app:app $APP_HOME
+# RUN chmod 755 entrypoint.prod.sh
+
+# change to the app user
+USER app
+
+# run entrypoint.prod.sh
+ENTRYPOINT ["sh","/home/app/web/entrypoint.prod.sh"]
+# ENTRYPOINT ["bash","entrypoint.prod.sh"]
+
+
+
+
+# EXPOSE 8000
+# CMD gunicorn stockup_project.wsgi:application --bind 0.0.0.0:$PORT
+
+# copy project
+
+
+# docker build -t sparrows-invest -f Dockerfile .
+# docker run -it -p 8888:8888 sparrows-invest
+
+# docker run -it -d -p 8888:8888 sparrows-invest (background)
+# docker ps > docker stop image
+# docker image rm (filename) --force
+# gunicorn stockup_project.wsgi:application --bind 0.0.0.0:8000
+# docker rmi $(docker images -f dangling=true -q) - remove
+
+
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["entrypoint.sh"]
+
+# gunicorn --bind 0.0.0.0:8888 stockup_project/stockup_project.wsgi:application 
+
+# docker-compose down -v
+# docker-compose -f docker-compose.prod.yml up -d --build 
+#  docker-compose -f docker-compose.prod.yml logs -f  
