@@ -2,7 +2,7 @@
 
 /usr/local/bin/gunicorn stockup_project.wsgi:application -w 2 -b :8000
 
-if [ "$NAMEDB_POST" = "sparrowsuserdb" ]
+if [ "$NAMEDB_POST" = "$NAMEDB_POST" ]
 then 
     echo "Waiting for postgress...."
 
@@ -14,7 +14,7 @@ then
 
 fi 
 
-if [ "$NAMEDB_MYSQL" = "dividends" ]
+if [ "$NAMEDB_MYSQL" = "$NAMEDB_MYSQL" ]
 then 
     echo "Waiting for mysql...."
 
