@@ -132,3 +132,6 @@ dmypy.json
 
 # Environment Variable
 .env
+
+#credentials
+.bash_profile
